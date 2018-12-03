@@ -5,6 +5,9 @@
 @time:2018/11/2722:29
 """
 import tensorflow as tf
+import random
+import numpy as np
+from keras.preprocessing.image import ImageDataGenerator
 
 
 class LoadData(object):
@@ -14,11 +17,38 @@ class LoadData(object):
         self.noise_level = noise_level
         self.augmentation = augmentation
 
-    def data_augmentation(self):
-        pass
+    def load_data(self):
+        raise NotImplementedError("Do not implement this method")
 
-    def generate_noise_labels(self):
-        pass
+    def data_augmentation(self, x_train, y_train):
+        img_generator = ImageDataGenerator(rotation_range=15, width_shift_range=0.2, height_shift_range=0.2,
+                                           zoom_range=0.2)
+        data_num = x_train.shape[0]
+        x_train = x_train.reshape(data_num, channel, self.img_rows, self.img_cols)
+        data_augmentation = img_generator.flow(x_train, y_train, batch_size=data_num)
+        np.concatenate((x_train, data_augmentation[0][0]), axis=0)
+        np.concatenate((y_train, data_augmentation[0][1]), axis=0)
+        x_train = x_train.reshape(data_num, self.img_rows, self.img_cols, 1)
+        return x_train, y_train
+
+    def generate_noise_labels(self, y_train):
+        num_noise = int(self.noise_label * self.y_train.shape[0])
+        noise_index = np.random.choice(y_train.shape[0], num_noise, replace=False)
+        label_slice = np.argmax(y_train[noise_index], axis=1)
+        new_label = np.random.randint(low=0, high=self.num_classes, size=num_noise)
+        while sum(label_slice == new_label) > 0:
+            n = sum(label_slice == new_label)
+            new_label[label_slice == new_label] = np.random.randint(low=0, high=self.num_classes, size=n)
+        y_train[noise_index] = tf.contrib.keras.utils.to_categorical(new_label, self.num_classes)
+        return y_train
+
+    def data_preprocess(self):
+        x_train, y_train, x_test, y_test = self.load_data()
+        if self.noise_level > 0:
+            y_train = self.generate_noise_labels(y_train)
+        if self.augmentation:
+            x_train, y_train = self.data_augmentation(x_train, y_train, channel)
+        return x_train, y_train, x_test, y_test
 
 
 class MNIST(LoadData):
@@ -28,6 +58,7 @@ class MNIST(LoadData):
         self.num_classes = 10
         self.img_rows, self.img_cols = 28, 28
         self.input_size = [28, 28]
+        self.x_train, self.y_train, self.x_test, self.y_test = self.data_preprocess()
 
     def load_data(self):
         # load data
@@ -39,11 +70,6 @@ class MNIST(LoadData):
         # transform labels to one-hot vectors
         y_train = tf.contrib.keras.utils.to_categorical(y_train, self.num_classes)
         y_test = tf.contrib.keras.utils.to_categorical(y_test, self.num_classes)
-
-        if self.augmentation:
-            pass
-        if self.noise_level > 0:
-            pass
         return x_train, y_train, x_test, y_test
 
 
@@ -56,10 +82,6 @@ class CIFAR10(LoadData):
         cifar10 = tf.keras.datasets.cifar10
         (x_train, y_train), (x_test, y_test) = cifar10.load_data()
         x_train, x_test = x_train / 255.0, x_test / 255.0
-        if self.augmentation:
-            pass
-        if self.noise_level > 0:
-            pass
         return x_train, y_train, x_test, y_test
 
 

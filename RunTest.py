@@ -30,7 +30,8 @@ def generate_combined_label(y, label, binary_classifier_list):
 
 def run_cross_reference():
     data_object = FactoryClass.ChooseDataset(dataset, seed, noise_level, augmentation)
-    x_train, y_train, x_test, y_test = data_object.load_data()
+    x_train, y_train, x_test, y_test = data_object.x_train, data_object.y_train, data_object.x_test, data_object.y_test
+
     num_classes = data_object.num_classes
     input_size = data_object.input_size
 

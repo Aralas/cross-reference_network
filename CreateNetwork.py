@@ -39,15 +39,15 @@ class CreateCNN(CreateNetwork):
                                                         kernel_initializer=tf.keras.initializers.glorot_normal))
             else:
                 print('Invalid architecture /(ㄒoㄒ)/~~')
-            model.add(tf.contrib.keras.layers.Dropout(self.dropout))
-            if self.num_classes > 2:
-                activation_for_output = 'softmax'
-            elif self.num_classes == 2:
-                activation_for_output = 'sigmoid'
-            model.add(tf.contrib.keras.layers.Dense(self.num_classes, activation=activation_for_output))
-            model.compile(loss=tf.contrib.keras.losses.categorical_crossentropy, metrics=['accuracy'],
-                          optimizer=tf.contrib.keras.optimizers.Adam)
-            return model
+        model.add(tf.contrib.keras.layers.Dropout(self.dropout))
+        if self.num_classes > 2:
+            activation_for_output = 'softmax'
+        elif self.num_classes == 2:
+            activation_for_output = 'sigmoid'
+        model.add(tf.contrib.keras.layers.Dense(self.num_classes, activation=activation_for_output))
+        model.compile(loss=tf.contrib.keras.losses.categorical_crossentropy, metrics=['accuracy'],
+                      optimizer=tf.contrib.keras.optimizers.Adam)
+        return model
 
     def train_model(self, x, y, batch_size, epochs):
         self.model.fit(x, y, batch_size=batch_size, epochs=epochs)
@@ -58,6 +58,7 @@ class CreateFullyConnected(CreateNetwork):
 
     def __init__(self, architecture, input_shape, dropout, num_classes):
         CreateNetwork.__init__(architecture, input_shape, dropout, num_classes)
+        self.model = self.generate_model()
 
     def generate_model(self):
         model = tf.contrib.keras.models.Sequential()
@@ -75,3 +76,8 @@ class CreateFullyConnected(CreateNetwork):
         model.add(tf.contrib.keras.layers.Dense(self.num_classes, activation=activation_for_output))
         model.compile(loss=tf.contrib.keras.losses.categorical_crossentropy, metrics=['accuracy'],
                       optimizer=tf.contrib.keras.optimizers.Adam)
+        return model
+
+    def train_model(self, x, y, batch_size, epochs):
+        self.model.fit(x, y, batch_size=batch_size, epochs=epochs)
+        return score
