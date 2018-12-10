@@ -23,7 +23,7 @@ batch_size = 128
 section_num = 20
 epochs = 10
 data_size = 500
-first_merged_section = 0
+first_merged_section = 1
 
 
 def randomly_sample_binary_data(x, y, data_size, label):
@@ -44,12 +44,13 @@ def generate_combined_label(x, y, label, num_classes, binary_classifier_list):
     result = np.zeros((num_classes, n))
     for i in range(num_classes):
         classifier = binary_classifier_list[i]
-        prediction = 1 - classifier.prediction(x).reshape((n, ))
+        prediction = 1 - classifier.prediction(x).reshape((n,))
         result[i, :] = prediction
     result[label, :] = y.reshape(n, )
     factor = np.ones((num_classes, 1)) / (2 * (num_classes - 1))
     factor[label] = 0.5
     y_hat = result * factor
+    y_hat = np.sum(y_hat, axis=0).reshape((n, 1))
     return y_hat
 
 
