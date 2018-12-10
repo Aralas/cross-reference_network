@@ -7,7 +7,7 @@
 import tensorflow as tf
 import random
 import numpy as np
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
 class LoadData(object):
@@ -24,15 +24,13 @@ class LoadData(object):
         img_generator = ImageDataGenerator(rotation_range=15, width_shift_range=0.2, height_shift_range=0.2,
                                            zoom_range=0.2)
         data_num = x_train.shape[0]
-        x_train = x_train.reshape(data_num, channel, self.img_rows, self.img_cols)
         data_augmentation = img_generator.flow(x_train, y_train, batch_size=data_num)
-        np.concatenate((x_train, data_augmentation[0][0]), axis=0)
-        np.concatenate((y_train, data_augmentation[0][1]), axis=0)
-        x_train = x_train.reshape(data_num, self.img_rows, self.img_cols, 1)
+        x_train = np.concatenate((x_train, data_augmentation[0][0]), axis=0)
+        y_train = np.concatenate((y_train, data_augmentation[0][1]), axis=0)
         return x_train, y_train
 
     def generate_noise_labels(self, y_train):
-        num_noise = int(self.noise_label * self.y_train.shape[0])
+        num_noise = int(self.noise_level * y_train.shape[0])
         noise_index = np.random.choice(y_train.shape[0], num_noise, replace=False)
         label_slice = np.argmax(y_train[noise_index], axis=1)
         new_label = np.random.randint(low=0, high=self.num_classes, size=num_noise)
@@ -47,17 +45,17 @@ class LoadData(object):
         if self.noise_level > 0:
             y_train = self.generate_noise_labels(y_train)
         if self.augmentation:
-            x_train, y_train = self.data_augmentation(x_train, y_train, channel)
+            x_train, y_train = self.data_augmentation(x_train, y_train)
         return x_train, y_train, x_test, y_test
 
 
 class MNIST(LoadData):
 
     def __init__(self, seed, noise_level, augmentation):
-        LoadData.__init__(seed, noise_level, augmentation)
+        LoadData.__init__(self, seed, noise_level, augmentation)
         self.num_classes = 10
         self.img_rows, self.img_cols = 28, 28
-        self.input_size = [28, 28]
+        self.input_size = (28, 28, 1)
         self.x_train, self.y_train, self.x_test, self.y_test = self.data_preprocess()
 
     def load_data(self):
@@ -66,6 +64,7 @@ class MNIST(LoadData):
         (x_train, y_train), (x_test, y_test) = mnist.load_data()
         x_train, x_test = x_train / 255.0, x_test / 255.0
         x_train = x_train.reshape(x_train.shape[0], self.img_rows, self.img_cols, 1)
+        x_test = x_test.reshape(x_test.shape[0], self.img_rows, self.img_cols, 1)
 
         # transform labels to one-hot vectors
         y_train = tf.contrib.keras.utils.to_categorical(y_train, self.num_classes)
@@ -76,7 +75,7 @@ class MNIST(LoadData):
 class CIFAR10(LoadData):
 
     def __init__(self, seed, noise_level, augmentation):
-        LoadData.__init__(seed, noise_level, augmentation)
+        LoadData.__init__(self, seed, noise_level, augmentation)
 
     def load_data(self):
         cifar10 = tf.keras.datasets.cifar10
@@ -88,7 +87,7 @@ class CIFAR10(LoadData):
 class NORB(LoadData):
 
     def __init__(self, seed, noise_level, augmentation):
-        LoadData.__init__(seed, noise_level, augmentation)
+        LoadData.__init__(self, seed, noise_level, augmentation)
 
     def load_data(self):
         pass
@@ -97,7 +96,7 @@ class NORB(LoadData):
 class NewsGroup(LoadData):
 
     def __init__(self, seed, noise_level, augmentation):
-        LoadData.__init__(seed, noise_level, augmentation)
+        LoadData.__init__(self, seed, noise_level, augmentation)
 
     def load_data(self):
         pass

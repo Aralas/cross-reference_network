@@ -8,20 +8,24 @@
 import CreateNetwork
 import DataPreProcessing
 
+
 class ChooseNetworkCreator(object):
 
-    def __init__(self, model_type, architecture, input_shape, dropout, num_classes):
+    def __init__(self, model_type, architecture, input_shape, learning_rate, dropout, num_classes):
         self.model_type = model_type
         self.architecture = architecture
         self.input_shape = input_shape
         self.dropout = dropout
         self.num_classes = num_classes
+        self.learning_rate = learning_rate
 
     def choose_network_creator(self):
         if self.model_type == 'CNN':
-            return CreateNetwork.CreateCNN(architecture, self.input_shape, self.dropout, self.num_classes)
+            return CreateNetwork.CreateCNN(self.architecture, self.input_shape, self.learning_rate, self.dropout,
+                                           self.num_classes)
         elif self.model_type == 'fully_connected':
-            return CreateNetwork.CreateFullyConnected(architecture, self.input_shape, self.dropout, self.num_classes)
+            return CreateNetwork.CreateFullyConnected(self.architecture, self.input_shape, self.learning_rate,
+                                                      self.dropout, self.num_classes)
         else:
             print('There is no such network /(ㄒoㄒ)/~~')
 
@@ -32,6 +36,7 @@ class ChooseDataset(object):
         self.seed = seed
         self.noise_level = noise_level
         self.augmentation = augmentation
+        self.data_object = self.choose_dataset()
 
     def choose_dataset(self):
         if self.dataset == 'MNIST':
@@ -44,5 +49,3 @@ class ChooseDataset(object):
             return DataPreProcessing.NewsGroup(self.seed, self.noise_level, self.augmentation)
         else:
             print('There is no such dataset /(ㄒoㄒ)/~~')
-
-
