@@ -32,9 +32,12 @@ class CreateCNN(CreateNetwork):
         for layer_index in range(len(self.architecture)):
             layer = self.architecture[layer_index]
             if len(layer) == 3:
-
-                model.add(Conv2D(layer[0], kernel_size=(layer[1], layer[2]), input_shape=self.input_shape,
-                          kernel_initializer='glorot_normal', activation='relu'))
+                if layer_index == 0:
+                    model.add(Conv2D(layer[0], kernel_size=(layer[1], layer[2]), input_shape=self.input_shape,
+                                     kernel_initializer='glorot_normal', activation='relu', padding='same'))
+                else:
+                    model.add(Conv2D(layer[0], kernel_size=(layer[1], layer[2]), kernel_initializer='glorot_normal',
+                                     activation='relu', padding='same'))
                 model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
             elif len(layer) == 1:
                 if len(self.architecture[layer_index - 1]) == 3:
@@ -46,7 +49,7 @@ class CreateCNN(CreateNetwork):
         if self.num_classes > 2:
             model.add(Dense(self.num_classes))
             model.add(Activation('softmax'))
-            adam = Adam(lr=1e-4)
+            adam = Adam(lr=self.learning_rate)
             model.compile(loss='categorical_crossentropy', metrics=['accuracy'], optimizer=adam)
         elif self.num_classes == 2:
             model.add(Dense(1))
@@ -63,7 +66,8 @@ class CreateCNN(CreateNetwork):
         return loss, accuracy
 
     def prediction(self, x):
-        return(self.model.predict(x))
+        return (self.model.predict(x))
+
 
 class CreateFullyConnected(CreateNetwork):
 

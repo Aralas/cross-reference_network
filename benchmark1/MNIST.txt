@@ -20,6 +20,7 @@ epoch: 10
 7-th epoch, loss: 1.3618716162363689, train accuracy: 0.674925, test accuracy:0.9872
 8-th epoch, loss: 1.3578991485595704, train accuracy: 0.6742583333333333, test accuracy:0.9877
 9-th epoch, loss: 1.3456262120405833, train accuracy: 0.6769416666666667, test accuracy:0.989
+<<<<<<< HEAD
 **********model architecture: [[32, 5, 5], [64, 5, 5], [1000]]
 noise level: 0.3
 augmentation: True
