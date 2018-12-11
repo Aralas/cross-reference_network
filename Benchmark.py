@@ -50,7 +50,7 @@ def run_benchmark():
         record.write(str(epoch) + '-th epoch, loss: ' + str(loss_train) + ', train accuracy: ' + str(
             accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
         record.flush()
-    record.write('*' * 10)
+    record.write('*' * 30 + '\n')
     record.close()
 
 
