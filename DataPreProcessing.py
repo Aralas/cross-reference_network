@@ -76,11 +76,22 @@ class CIFAR10(LoadData):
 
     def __init__(self, seed, noise_level, augmentation):
         LoadData.__init__(self, seed, noise_level, augmentation)
+        self.num_classes = 10
+        self.img_rows, self.img_cols = 32, 32
+        self.input_size = (32, 32, 1)
+        self.x_train, self.y_train, self.x_test, self.y_test = self.data_preprocess()
 
     def load_data(self):
+        # load data
         cifar10 = tf.keras.datasets.cifar10
         (x_train, y_train), (x_test, y_test) = cifar10.load_data()
         x_train, x_test = x_train / 255.0, x_test / 255.0
+        x_train = x_train.reshape(x_train.shape[0], self.img_rows, self.img_cols, 1)
+        x_test = x_test.reshape(x_test.shape[0], self.img_rows, self.img_cols, 1)
+
+        # transform labels to one-hot vectors
+        y_train = tf.contrib.keras.utils.to_categorical(y_train, self.num_classes)
+        y_test = tf.contrib.keras.utils.to_categorical(y_test, self.num_classes)
         return x_train, y_train, x_test, y_test
 
 
