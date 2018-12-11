@@ -4,12 +4,6 @@ augmentation: True
 learning rate: 0.001
 batch size: 128
 epoch: 10
-model architecture: [[32, 5, 5], [64, 5, 5], [500]]
-noise level: 0.3
-augmentation: True
-learning rate: 0.001
-batch size: 128
-epoch: 10
 0-th epoch, loss: 1.5481374818325042, train accuracy: 0.6065333333333334, test accuracy:0.961
 1-th epoch, loss: 1.4671124206225077, train accuracy: 0.6409833333333333, test accuracy:0.9733
 2-th epoch, loss: 1.4295182897249858, train accuracy: 0.6518333333333334, test accuracy:0.9784
@@ -20,16 +14,7 @@ epoch: 10
 7-th epoch, loss: 1.3618716162363689, train accuracy: 0.674925, test accuracy:0.9872
 8-th epoch, loss: 1.3578991485595704, train accuracy: 0.6742583333333333, test accuracy:0.9877
 9-th epoch, loss: 1.3456262120405833, train accuracy: 0.6769416666666667, test accuracy:0.989
-<<<<<<< HEAD
-**********model architecture: [[32, 5, 5], [64, 5, 5], [1000]]
-noise level: 0.3
-augmentation: True
-learning rate: 0.001
-batch size: 128
-epoch: 10
-0-th epoch, loss: 1.5164318587462107, train accuracy: 0.6190583333333334, test accuracy:0.9635
-1-th epoch, loss: 1.4482675863107046, train accuracy: 0.6469833333333334, test accuracy:0.9763
-2-th epoch, loss: 1.416203372335434, train accuracy: 0.6573583333333334, test accuracy:0.9781
+**********
 model architecture: [[32, 5, 5], [64, 5, 5], [1000]]
 noise level: 0.3
 augmentation: True
@@ -56,7 +41,8 @@ epoch: 20
 17-th epoch, loss: 1.2719077084859212, train accuracy: 0.6873916666666666, test accuracy:0.9908
 18-th epoch, loss: 1.2660994727452597, train accuracy: 0.688025, test accuracy:0.9908
 19-th epoch, loss: 1.2638281023025513, train accuracy: 0.6879, test accuracy:0.9902
-**********model architecture: [[32, 5, 5], [64, 5, 5], [1500]]
+**********
+model architecture: [[32, 5, 5], [64, 5, 5], [1500]]
 noise level: 0.3
 augmentation: True
 learning rate: 0.001
