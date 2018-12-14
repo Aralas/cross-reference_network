@@ -14,8 +14,8 @@ dataset = 'MNIST'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[32, 5, 5], [32, 5, 5], [64, 5, 5], [500]]
-noise_level = 0.3
+model_architecture = [[32, 5, 5], [64, 5, 5], [500]]
+noise_level = 1
 augmentation = True
 dropout = 0.5
 learning_rate = 0.001
@@ -23,7 +23,7 @@ batch_size = 128
 section_num = 20
 epochs = 10
 data_size = 500
-first_merged_section = 1
+first_merged_section = 20
 
 
 def randomly_sample_binary_data(x, y, data_size, label):
