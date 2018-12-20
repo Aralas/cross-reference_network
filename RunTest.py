@@ -68,7 +68,7 @@ def evaluate_target_model(x, y, binary_classifier_list):
     for label in range(num_classes):
         classifier = binary_classifier_list[label]
         prediction = classifier.prediction(x).reshape((n,))
-        result[:,i] = prediction
+        result[:, i] = prediction
     result = np.argmax(result, axis=1)
     accuracy = np.mean(np.argmax(y, axis=1) == np.argmax(result, axis=1))
     return accuracy
@@ -116,6 +116,7 @@ def run_cross_reference():
         record.flush()
     record.write('*' * 30 + '\n')
     record.close()
+
 
 for noise_level in [0.1, 0.3, 0.5, 0.7, 0.9]:
     run_cross_reference()

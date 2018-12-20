@@ -78,7 +78,7 @@ class CIFAR10(LoadData):
         LoadData.__init__(self, seed, noise_level, augmentation)
         self.num_classes = 10
         self.img_rows, self.img_cols = 32, 32
-        self.input_size = (32, 32, 1)
+        self.input_size = (32, 32, 3)
         self.x_train, self.y_train, self.x_test, self.y_test = self.data_preprocess()
 
     def load_data(self):
