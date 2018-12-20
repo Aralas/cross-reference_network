@@ -10,20 +10,20 @@ import numpy as np
 import random
 import FactoryClass
 
-dataset = 'MNIST'
+dataset = 'CIFAR10'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[32, 5, 5], [64, 5, 5], [500]]
+model_architecture = [[32, 5, 5], [32, 5, 5], [32, 5, 5], [500]]
 noise_level = 1
 augmentation = True
 dropout = 0.5
 learning_rate = 0.001
 batch_size = 128
-section_num = 20
-epochs = 10
-data_size = 500
-first_merged_section = 20
+section_num = 50
+epochs = 20
+data_size = 1000
+first_merged_section = 5
 
 
 def randomly_sample_binary_data(x, y, data_size, label):
@@ -61,6 +61,19 @@ def multi_label_to_binary_label(y, label):
     return y_hat
 
 
+def evaluate_target_model(x, y, binary_classifier_list):
+    num_classes = len(binary_classifier_list)
+    num_sample = len(x)
+    result = np.zeros((num_sample, num_classes))
+    for label in range(num_classes):
+        classifier = binary_classifier_list[label]
+        prediction = classifier.prediction(x).reshape((n,))
+        result[:,i] = prediction
+    result = np.argmax(result, axis=1)
+    accuracy = np.mean(np.argmax(y, axis=1) == np.argmax(result, axis=1))
+    return accuracy
+
+
 def run_cross_reference():
     data_chooser = FactoryClass.ChooseDataset(dataset, seed, noise_level, augmentation)
     data_object = data_chooser.data_object
@@ -72,7 +85,7 @@ def run_cross_reference():
     binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
-    record_file = 'test1/' + dataset + '.txt'
+    record_file = 'test2/' + dataset + '.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
@@ -98,8 +111,11 @@ def run_cross_reference():
             record.write(str(section) + '-th section, ' + str(label) + '-th classifier, loss: ' + str(loss_train)
                          + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
             record.flush()
-    record.write('*' * 10)
+        accuracy_multi = evaluate_target_model(x_test, y_test, binary_classifier_list)
+        record.write('test accuracy for multi-classifier: ' + str(accuracy_multi) + '\n')
+        record.flush()
+    record.write('*' * 30 + '\n')
     record.close()
 
-
-run_cross_reference()
+for noise_level in [0.1, 0.3, 0.5, 0.7, 0.9]:
+    run_cross_reference()
