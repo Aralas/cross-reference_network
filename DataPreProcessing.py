@@ -86,8 +86,8 @@ class CIFAR10(LoadData):
         cifar10 = tf.keras.datasets.cifar10
         (x_train, y_train), (x_test, y_test) = cifar10.load_data()
         x_train, x_test = x_train / 255.0, x_test / 255.0
-        x_train = x_train.reshape(x_train.shape[0], self.img_rows, self.img_cols, 1)
-        x_test = x_test.reshape(x_test.shape[0], self.img_rows, self.img_cols, 1)
+        x_train = x_train.reshape(x_train.shape[0], self.img_rows, self.img_cols, 3)
+        x_test = x_test.reshape(x_test.shape[0], self.img_rows, self.img_cols, 3)
 
         # transform labels to one-hot vectors
         y_train = tf.contrib.keras.utils.to_categorical(y_train, self.num_classes)
