@@ -71,7 +71,7 @@ def evaluate_target_model_top_n(x, y, binary_classifier_list, top_n):
         result[:, label] = prediction
     # result = np.argmax(result, axis=1)
     # accuracy = np.mean(np.argmax(y, axis=1) == np.argmax(result, axis=1))
-    with tf.session() as sess:
+    with tf.Session() as sess:
         accuracy = sess.run(tf.reduce_mean(
             tf.cast(tf.nn.in_top_k(predictions=result, targets=np.argmax(y, axis=1), k=top_n), tf.float32)))
     return accuracy
