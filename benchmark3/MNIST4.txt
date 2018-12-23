@@ -1,0 +1,60 @@
+model architecture: [[64, 5, 5], [64, 5, 5], [500]]
+noise level: 0.3
+augmentation: True
+learning rate: 0.001
+batch size: 128
+epoch: 10
+0-th epoch, loss: 1.5356044777234394, train accuracy: 0.6121583333333334, test accuracy:0.9623
+model architecture: [[64, 5, 5], [64, 5, 5], [500]]
+noise level: 0.3
+augmentation: True
+learning rate: 0.001
+batch size: 128
+epoch: 20
+0-th epoch, loss: 1.5314486897945403, train accuracy: 0.6111666666666666, test accuracy:0.966
+1-th epoch, loss: 1.4580816462993622, train accuracy: 0.6431583333333334, test accuracy:0.9729
+2-th epoch, loss: 1.431646999279658, train accuracy: 0.6520833333333333, test accuracy:0.9757
+3-th epoch, loss: 1.3984412910620372, train accuracy: 0.663275, test accuracy:0.9818
+4-th epoch, loss: 1.383226467959086, train accuracy: 0.6681416666666666, test accuracy:0.9837
+5-th epoch, loss: 1.3688209968884786, train accuracy: 0.6708833333333334, test accuracy:0.9861
+6-th epoch, loss: 1.359385600153605, train accuracy: 0.673675, test accuracy:0.9865
+7-th epoch, loss: 1.3515304974397024, train accuracy: 0.6749083333333333, test accuracy:0.9865
+8-th epoch, loss: 1.3402634811242422, train accuracy: 0.6776416666666667, test accuracy:0.9877
+9-th epoch, loss: 1.3358196926116943, train accuracy: 0.6783083333333333, test accuracy:0.988
+10-th epoch, loss: 1.3294366249720255, train accuracy: 0.6803916666666666, test accuracy:0.988
+11-th epoch, loss: 1.3205623477776844, train accuracy: 0.6817166666666666, test accuracy:0.9898
+12-th epoch, loss: 1.3179363161563873, train accuracy: 0.6820083333333333, test accuracy:0.9908
+13-th epoch, loss: 1.3109003265539805, train accuracy: 0.6827083333333334, test accuracy:0.9902
+14-th epoch, loss: 1.3059958122412363, train accuracy: 0.6840916666666667, test accuracy:0.99
+15-th epoch, loss: 1.301208427667618, train accuracy: 0.6847333333333333, test accuracy:0.9908
+16-th epoch, loss: 1.2942712404727936, train accuracy: 0.686125, test accuracy:0.9921
+17-th epoch, loss: 1.28871896332105, train accuracy: 0.6859333333333333, test accuracy:0.9908
+18-th epoch, loss: 1.2873635558446248, train accuracy: 0.6863416666666666, test accuracy:0.9918
+19-th epoch, loss: 1.2780956610679626, train accuracy: 0.6873833333333333, test accuracy:0.9919
+**********model architecture: [[64, 5, 5], [64, 5, 5], [1500]]
+noise level: 0.3
+augmentation: True
+learning rate: 0.001
+batch size: 128
+epoch: 20
+0-th epoch, loss: 1.495049369017283, train accuracy: 0.6299, test accuracy:0.9712
+1-th epoch, loss: 1.4306682293732962, train accuracy: 0.65325, test accuracy:0.9767
+2-th epoch, loss: 1.3988075321038564, train accuracy: 0.6629833333333334, test accuracy:0.9843
+3-th epoch, loss: 1.3769579983711242, train accuracy: 0.6713166666666667, test accuracy:0.9862
+4-th epoch, loss: 1.355407437356313, train accuracy: 0.67555, test accuracy:0.9893
+5-th epoch, loss: 1.3460950513839722, train accuracy: 0.6777166666666666, test accuracy:0.9893
+6-th epoch, loss: 1.3344139474391936, train accuracy: 0.6796583333333334, test accuracy:0.9883
+7-th epoch, loss: 1.3230509159088135, train accuracy: 0.681925, test accuracy:0.99
+8-th epoch, loss: 1.3128910499731699, train accuracy: 0.6832583333333333, test accuracy:0.9909
+9-th epoch, loss: 1.3053758994897207, train accuracy: 0.6845333333333333, test accuracy:0.9906
+10-th epoch, loss: 1.2985580712874731, train accuracy: 0.6852583333333333, test accuracy:0.9923
+11-th epoch, loss: 1.285675310365359, train accuracy: 0.687025, test accuracy:0.9913
+12-th epoch, loss: 1.2851992775917054, train accuracy: 0.6866, test accuracy:0.9912
+13-th epoch, loss: 1.272565980275472, train accuracy: 0.6878166666666666, test accuracy:0.9922
+14-th epoch, loss: 1.264031762901942, train accuracy: 0.688875, test accuracy:0.9914
+15-th epoch, loss: 1.2572296924591064, train accuracy: 0.6884416666666666, test accuracy:0.9903
+16-th epoch, loss: 1.2452013410568237, train accuracy: 0.690625, test accuracy:0.9915
+17-th epoch, loss: 1.2402507785956065, train accuracy: 0.6900583333333333, test accuracy:0.9913
+18-th epoch, loss: 1.2268285538514456, train accuracy: 0.6910416666666667, test accuracy:0.9915
+19-th epoch, loss: 1.2179507893006007, train accuracy: 0.692175, test accuracy:0.9919
+**********
