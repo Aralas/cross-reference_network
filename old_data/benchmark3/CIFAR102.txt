@@ -796,9 +796,4 @@ epoch: 50
 48-th epoch, loss: 0.12694235117539762, train accuracy: 0.95856, test accuracy:0.727
 49-th epoch, loss: 0.12512472620555432, train accuracy: 0.95901, test accuracy:0.7306
 ******************************
-model architecture: [[32, 5, 5], [64, 5, 5], [64, 5, 5], [128, 5, 5], [2000]]
-noise level: 0
-augmentation: True
-learning rate: 0.001
-batch size: 128
-epoch: 50
+

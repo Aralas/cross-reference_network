@@ -3,13 +3,6 @@ noise level: 0.3
 augmentation: True
 learning rate: 0.001
 batch size: 128
-epoch: 10
-0-th epoch, loss: 1.5115370234648386, train accuracy: 0.6229, test accuracy:0.9657
-model architecture: [[64, 5, 5], [64, 5, 5], [1000]]
-noise level: 0.3
-augmentation: True
-learning rate: 0.001
-batch size: 128
 epoch: 20
 0-th epoch, loss: 1.5023223304112752, train accuracy: 0.6281083333333334, test accuracy:0.97
 1-th epoch, loss: 1.440054700231552, train accuracy: 0.6508833333333334, test accuracy:0.9794
