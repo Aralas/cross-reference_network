@@ -26,7 +26,7 @@ epochs = 2
 data_size = 1000
 first_merged_section = 5
 update_threshold = [0.8, 0.6]
-first_update_section = 0
+first_update_section = 10
 
 
 def randomly_sample_binary_data(x, y, data_size, label):
@@ -98,7 +98,7 @@ def update_label(x, y, y_orig, update_threshold, binary_classifier_list):
     count_prediction1 = np.sum(predict_label_thres1, axis=1)
     count_prediction2 = np.sum(predict_label_thres2, axis=1)
     confident_prediction_index = np.where((count_prediction1 == 1) & (count_prediction2 == 1))[0]
-    y_new[confident_prediction_index] = np.argmax(result[confident_prediction_index], axis=1)
+    y_new[confident_prediction_index] = np.argmax(result[confident_prediction_index], axis=1).reshape(-1, 1)
     false_predict_index = np.where(y_new != y_orig)[0]
     n1 = len(set(false_label_index) - set(false_predict_index))
     n2 = len(set(false_predict_index) - set(false_label_index))
@@ -145,7 +145,7 @@ def run_cross_reference():
         if section >= first_update_section:
             y_train, n1, n2 = update_label(x_train, y_train_noise, y_train_orig, update_threshold,
                                                          binary_classifier_list)
-        record.write('successfully update noise label: ' + str(n1) + ' false update: ' + str(n2))
+        record.write('successfully update noise label: ' + str(n1) + ' false update: ' + str(n2) + '\n')
         record.flush()
         for label in range(num_classes):
             classifier = binary_classifier_list[label]
