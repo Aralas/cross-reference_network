@@ -41,12 +41,12 @@ class LoadData(object):
         return y_train
 
     def data_preprocess(self):
-        x_train, y_train, x_test, y_test = self.load_data()
+        x_train, y_train_orig, x_test, y_test = self.load_data()
         if self.noise_level > 0:
-            y_train = self.generate_noise_labels(y_train)
+            y_train = self.generate_noise_labels(y_train_orig)
         if self.augmentation:
             x_train, y_train = self.data_augmentation(x_train, y_train)
-        return x_train, y_train, x_test, y_test
+        return x_train, y_train, y_train_orig, x_test, y_test
 
 
 class MNIST(LoadData):
@@ -56,7 +56,7 @@ class MNIST(LoadData):
         self.num_classes = 10
         self.img_rows, self.img_cols = 28, 28
         self.input_size = (28, 28, 1)
-        self.x_train, self.y_train, self.x_test, self.y_test = self.data_preprocess()
+        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test = self.data_preprocess()
 
     def load_data(self):
         # load data
@@ -79,7 +79,7 @@ class CIFAR10(LoadData):
         self.num_classes = 10
         self.img_rows, self.img_cols = 32, 32
         self.input_size = (32, 32, 3)
-        self.x_train, self.y_train, self.x_test, self.y_test = self.data_preprocess()
+        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test = self.data_preprocess()
 
     def load_data(self):
         # load data

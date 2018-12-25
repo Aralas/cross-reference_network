@@ -9,21 +9,24 @@ import tensorflow as tf
 import numpy as np
 import random
 import FactoryClass
+from copy import deepcopy
 
-dataset = 'CIFAR10'
+dataset = 'MNIST'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[32, 5, 5], [32, 5, 5], [32, 5, 5], [500]]
+model_architecture = [[32, 5, 5], [32, 5, 5], [1000]]
 noise_level = 1
 augmentation = True
 dropout = 0.5
 learning_rate = 0.001
 batch_size = 128
 section_num = 50
-epochs = 20
+epochs = 2
 data_size = 1000
 first_merged_section = 5
+update_threshold = [0.8, 0.6]
+first_update_section = 0
 
 
 def randomly_sample_binary_data(x, y, data_size, label):
@@ -77,11 +80,39 @@ def evaluate_target_model_top_n(x, y, binary_classifier_list, top_n):
     return accuracy
 
 
+def update_label(x, y, y_orig, update_threshold, binary_classifier_list):
+    beta1, beta2 = update_threshold
+    num_classes = len(binary_classifier_list)
+    num_sample = len(x)
+    result = np.zeros((num_sample, num_classes))
+    y_new = deepcopy(y)
+
+    for label in range(num_classes):
+        classifier = binary_classifier_list[label]
+        prediction = classifier.prediction(x).reshape((num_sample,))
+        result[:, label] = prediction
+
+    false_label_index = np.where(y != y_orig)[0]
+    predict_label_thres1 = 1 * (result > beta1)
+    predict_label_thres2 = 1 * (result > beta2)
+    count_prediction1 = np.sum(predict_label_thres1, axis=1)
+    count_prediction2 = np.sum(predict_label_thres2, axis=1)
+    confident_prediction_index = np.where((count_prediction1 == 1) & (count_prediction2 == 1))[0]
+    y_new[confident_prediction_index] = np.argmax(result[confident_prediction_index], axis=1)
+    false_predict_index = np.where(y_new != y_orig)[0]
+    n1 = len(set(false_label_index) - set(false_predict_index))
+    n2 = len(set(false_predict_index) - set(false_label_index))
+
+    return y_new, n1, n2
+
+
 def run_cross_reference():
     data_chooser = FactoryClass.ChooseDataset(dataset, seed, noise_level, augmentation)
     data_object = data_chooser.data_object
-    x_train, y_train, x_test, y_test = data_object.x_train, data_object.y_train, data_object.x_test, data_object.y_test
-
+    x_train, y_train, y_train_orig, x_test, y_test = data_object.x_train, data_object.y_train, \
+                                                     data_object.y_train_orig, data_object.x_test, data_object.y_test
+    y_train_noise = deepcopy(y_train)
+    false_label_num = np.sum(y_train != y_train_orig)
     num_classes = data_object.num_classes
     input_size = data_object.input_size
 
@@ -99,6 +130,8 @@ def run_cross_reference():
     record.write('data size: ' + str(data_size) + '\n')
     record.write('first merged section: ' + str(first_merged_section) + '\n')
     record.write('section: ' + str(section_num) + '\n')
+    record.write('update threshold: ' + str(update_threshold) + '\n')
+    record.write('first update section: ' + str(first_update_section) + '\n')
 
     for label in range(num_classes):
         binary_classifier_list.append(model_object.choose_network_creator())
@@ -109,6 +142,11 @@ def run_cross_reference():
         record.flush()
 
     for section in range(section_num):
+        if section >= first_update_section:
+            y_train, n1, n2 = update_label(x_train, y_train_noise, y_train_orig, update_threshold,
+                                                         binary_classifier_list)
+        record.write('successfully update noise label: ' + str(n1) + ' false update: ' + str(n2))
+        record.flush()
         for label in range(num_classes):
             classifier = binary_classifier_list[label]
             x, y = randomly_sample_binary_data(x_train, y_train, data_size, label)
@@ -128,5 +166,5 @@ def run_cross_reference():
     record.close()
 
 
-for noise_level in [0.1, 0.3, 0.5, 0.7, 0.9]:
+for noise_level in [0.5]:
     run_cross_reference()
