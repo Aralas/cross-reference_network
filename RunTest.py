@@ -98,6 +98,7 @@ def run_cross_reference():
     record.write('epoch: ' + str(epochs) + '\n')
     record.write('data size: ' + str(data_size) + '\n')
     record.write('first merged section: ' + str(first_merged_section) + '\n')
+    record.write('section: ' + str(section_num) + '\n')
 
     for label in range(num_classes):
         binary_classifier_list.append(model_object.choose_network_creator())
