@@ -119,7 +119,7 @@ def run_cross_reference():
     binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
-    record_file = 'test2/' + dataset + '.txt'
+    record_file = 'test3/' + dataset + '.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
