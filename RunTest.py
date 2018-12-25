@@ -22,7 +22,7 @@ dropout = 0.5
 learning_rate = 0.001
 batch_size = 128
 section_num = 50
-epochs = 2
+epochs = 20
 data_size = 1000
 first_merged_section = 5
 update_threshold = [0.8, 0.6]
@@ -145,8 +145,8 @@ def run_cross_reference():
         if section >= first_update_section:
             y_train, n1, n2 = update_label(x_train, y_train_noise, y_train_orig, update_threshold,
                                                          binary_classifier_list)
-        record.write('successfully update noise label: ' + str(n1) + ' false update: ' + str(n2) + '\n')
-        record.flush()
+            record.write('successfully update noise label: ' + str(n1) + ' false update: ' + str(n2) + '\n')
+            record.flush()
         for label in range(num_classes):
             classifier = binary_classifier_list[label]
             x, y = randomly_sample_binary_data(x_train, y_train, data_size, label)
