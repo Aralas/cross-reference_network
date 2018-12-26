@@ -8,6 +8,7 @@ import tensorflow as tf
 import random
 import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from copy import deepcopy
 
 
 class LoadData(object):
@@ -44,6 +45,8 @@ class LoadData(object):
         x_train, y_train_orig, x_test, y_test = self.load_data()
         if self.noise_level > 0:
             y_train = self.generate_noise_labels(y_train_orig)
+        else:
+            y_train = deepcopy(y_train_orig)
         if self.augmentation:
             x_train, y_train = self.data_augmentation(x_train, y_train)
         return x_train, y_train, y_train_orig, x_test, y_test
