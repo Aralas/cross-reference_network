@@ -15,7 +15,7 @@ dataset = 'MNIST'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[32, 5, 5], [32, 5, 5], [1000]]
+model_architecture = [[32, 5, 5], [64, 5, 5], [1500]]
 noise_level = 1
 augmentation = True
 dropout = 0.5
@@ -25,8 +25,9 @@ section_num = 50
 epochs = 20
 data_size = 1000
 first_merged_section = 5
+first_update_section = 50
+first_value_to_label_section = 10
 update_threshold = [0.8, 0.6]
-first_update_section = 10
 
 
 def randomly_sample_binary_data(x, y, data_size, label):
@@ -42,7 +43,7 @@ def randomly_sample_binary_data(x, y, data_size, label):
     return x_small, y_small
 
 
-def generate_combined_label(x, y, label, num_classes, binary_classifier_list):
+def generate_combined_label(x, y, label, num_classes, binary_classifier_list, value_to_label):
     n = len(x)
     result = np.zeros((num_classes, n))
     for i in range(num_classes):
@@ -54,6 +55,8 @@ def generate_combined_label(x, y, label, num_classes, binary_classifier_list):
     factor[label] = 0.5
     y_hat = result * factor
     y_hat = np.sum(y_hat, axis=0).reshape((n, 1))
+    if value_to_label:
+        y_hat = 1 * (y_hat > 0.5)
     return y_hat
 
 
@@ -102,7 +105,6 @@ def update_label(x, y, y_orig, update_threshold, binary_classifier_list):
     false_predict_index = np.where(y_new != y_orig)[0]
     n1 = len(set(false_label_index) - set(false_predict_index))
     n2 = len(set(false_predict_index) - set(false_label_index))
-
     return y_new, n1, n2
 
 
@@ -112,7 +114,6 @@ def run_cross_reference():
     x_train, y_train, y_train_orig, x_test, y_test = data_object.x_train, data_object.y_train, \
                                                      data_object.y_train_orig, data_object.x_test, data_object.y_test
     y_train_noise = deepcopy(y_train)
-    false_label_num = np.sum(y_train != y_train_orig)
     num_classes = data_object.num_classes
     input_size = data_object.input_size
 
@@ -132,6 +133,7 @@ def run_cross_reference():
     record.write('section: ' + str(section_num) + '\n')
     record.write('update threshold: ' + str(update_threshold) + '\n')
     record.write('first update section: ' + str(first_update_section) + '\n')
+    record.write('first value to label section: ' + str(first_value_to_label_section) + '\n')
 
     for label in range(num_classes):
         binary_classifier_list.append(model_object.choose_network_creator())
@@ -144,14 +146,15 @@ def run_cross_reference():
     for section in range(section_num):
         if section >= first_update_section:
             y_train, n1, n2 = update_label(x_train, y_train_noise, y_train_orig, update_threshold,
-                                                         binary_classifier_list)
+                                           binary_classifier_list)
             record.write('successfully update noise label: ' + str(n1) + ' false update: ' + str(n2) + '\n')
             record.flush()
         for label in range(num_classes):
             classifier = binary_classifier_list[label]
             x, y = randomly_sample_binary_data(x_train, y_train, data_size, label)
             if section >= first_merged_section:
-                y = generate_combined_label(x, y, label, num_classes, binary_classifier_list)
+                value_to_label = section > first_value_to_label_section
+                y = generate_combined_label(x, y, label, num_classes, binary_classifier_list, value_to_label)
             classifier.train_model(x, y, batch_size, epochs)
             loss_train, accuracy_train = classifier.evaluate_model(x, y)
             loss_test, accuracy_test = classifier.evaluate_model(x_test, multi_label_to_binary_label(y_test, label))
