@@ -46,6 +46,12 @@ def run_benchmark():
     record.write('epoch: ' + str(epochs) + '\n')
     record.write('visualize after every ' + str(visualization_batch_num) + 'batch' + '\n')
 
+    loss_train, accuracy_train = classifier.evaluate_model(x_train, y_train)
+    loss_test, accuracy_test = classifier.evaluate_model(x_test, y_test)
+    record.write('before training, train accuracy: ' + str(accuracy_train) +
+                 ', test accuracy:' + str(accuracy_test) + '\n')
+    record.flush()
+
     for epoch in range(epochs):
         num_samples = len(x_train)
         group_size = batch_size * visualization_batch_num
@@ -55,12 +61,12 @@ def run_benchmark():
                 index_subset = np.arange(group * group_size, num_samples)
             else:
                 index_subset = np.arange(group * group_size, (group + 1) * group_size)
-        classifier.train_model(x_train[index_subset], y_train[index_subset], batch_size, epochs=1)
-        loss_train, accuracy_train = classifier.evaluate_model(x_train, y_train)
-        loss_test, accuracy_test = classifier.evaluate_model(x_test, y_test)
-        record.write(str(epoch) + '-th epoch, ' + str(group) + '-th group, loss: ' + str(
-            loss_train) + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
-        record.flush()
+            classifier.train_model(x_train[index_subset], y_train[index_subset], batch_size, epochs=1)
+            loss_train, accuracy_train = classifier.evaluate_model(x_train, y_train)
+            loss_test, accuracy_test = classifier.evaluate_model(x_test, y_test)
+            record.write(str(epoch) + '-th epoch, ' + str(group) + '-th group, loss: ' + str(
+                loss_train) + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
+            record.flush()
     record.write('*' * 30 + '\n')
     record.close()
 
