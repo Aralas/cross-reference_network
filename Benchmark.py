@@ -36,7 +36,7 @@ def run_benchmark():
                                                      num_classes)
     classifier = model_object.choose_network_creator()
 
-    record_file = 'benchmark1/' + dataset + '.txt'
+    record_file = 'benchmark1_without_shuffle/' + dataset + '.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
