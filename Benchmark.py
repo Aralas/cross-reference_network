@@ -16,7 +16,7 @@ seed = 10
 # initialization = 'xavier'
 model_architecture = [[32, 5, 5], [64, 5, 5], [1500]]
 noise_level = 0
-augmentation = True
+augmentation = False
 dropout = 0.5
 learning_rate = 0.001
 batch_size = 128
@@ -36,7 +36,7 @@ def run_benchmark():
                                                      num_classes)
     classifier = model_object.choose_network_creator()
 
-    record_file = 'benchmark1_without_shuffle/' + dataset + '.txt'
+    record_file = 'benchmark_without_augmentation/' + dataset + '1.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
@@ -55,7 +55,12 @@ def run_benchmark():
     for epoch in range(epochs):
         num_samples = len(x_train)
         group_size = batch_size * visualization_batch_num
-        num_group = math.ceil(num_samples / (group_size))
+        num_group = math.ceil(num_samples / group_size)
+
+        shuffle_index = np.arange(num_samples)
+        random.shuffle(shuffle_index)
+        x_train = x_train[shuffle_index]
+        y_train = y_train[shuffle_index]
         for group in range(num_group):
             if group == (num_group - 1):
                 index_subset = np.arange(group * group_size, num_samples)
