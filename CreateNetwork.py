@@ -9,6 +9,9 @@ import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Conv2D, MaxPooling2D, Flatten, Dropout
 from keras.optimizers import Adam
+from keras import backend as K
+import numpy as np
+import functools
 
 
 class CreateNetwork(object):
@@ -19,6 +22,34 @@ class CreateNetwork(object):
         self.learning_rate = learning_rate
         self.dropout = dropout
         self.num_classes = num_classes
+        self.reference_output = None
+        self.lamb_weight = 0
+        self.power_n = 2
+
+    def phi_threshold(self, x):
+        if x >= 0.5:
+            return np.power(x, self.power_n)
+        else:
+            return 0
+
+    def create_reference(self, reference_output):
+        ref1 = np.array([[np.sum([self.phi_threshold(value) for value in line])] for line in reference_output])
+        ref2 = functools.reduce(lambda x, y: x * y, reference_output)
+        return ref1, ref2
+
+    def cross_ref_loss(self, y_true, y_pred):
+        if self.reference_output is None:
+            print('There is no reference matrix!!!')
+            return K.mean(K.square(y_pred - y_true), axis=-1)
+        else:
+            lamb_weight = K.variable(self.lamb_weight)
+            ref1, ref2 = self.create_reference(self.reference_output)
+            ref1 = K.variable(ref1)
+            ref2 = K.variable(ref2)
+            loss = K.mean(K.square(y_pred - y_true), axis=-1) + \
+                   lamb_weight * K.mean(np.multiply(y_true, ref1) * K.square(y_pred)) + \
+                   lamb_weight * K.mean(np.multiply((1 - y_true), ref2) * K.square(1 - y_pred))
+            return loss
 
 
 class CreateCNN(CreateNetwork):
@@ -55,7 +86,7 @@ class CreateCNN(CreateNetwork):
             model.add(Dense(1))
             model.add(Activation('sigmoid'))
             adam = Adam(lr=self.learning_rate)
-            model.compile(loss='mean_squared_error', metrics=['accuracy'], optimizer=adam)
+            model.compile(loss=self.cross_ref_loss, metrics=['accuracy'], optimizer=adam)
         return model
 
     def train_model(self, x, y, batch_size, epochs):
