@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @author:Xu Jingyi
-@file:Readtxt.txt.py
+@file:Readtxt.py
 @time:2019/1/201:28
 """
 
@@ -34,18 +34,18 @@ fig, axes = plt.subplots(nrows=3, ncols=3)
 x_position = [0]
 x_value = np.arange(21)
 for epoch in range(20):
-    x_position.append((epoch + 1) * 94 + 1)
+    x_position.append((epoch + 1) * 47 + 1)
 plt.setp(axes, xticks=x_position, xticklabels=x_value)
 # plt.suptitle('Benchmark of MNIST with small model without augmentation, learning rate=0.001, {[5, 5*5], [5, 5*5], [200]}')
 # plt.suptitle('Benchmark of MNIST with small model without augmentation, learning rate=0.001, {[5, 5*5], [5, 5*5], [200]}')
-plt.suptitle('Benchmark of MNIST, learning rate=0.001, {[32, 5*5], [64, 5*5], [1500]}')
+plt.suptitle('Benchmark of MNIST without augmentation, learning rate=0.001, {[32, 5*5], [64, 5*5], [1500]}')
 # plt.suptitle('Benchmark of MNIST without augmentation, learning rate=0.001, {[32, 5*5], [64, 5*5], [1500]}')
 
 
 
 for i in range(1, 10):
-    if i != 8:
-        filename = 'benchmark1_without_shuffle/MNIST' + str(i-1) + '.txt'
+    if i != 18:
+        filename = 'benchmark_without_augmentation/MNIST' + str(i) + '.txt'
         # filename = 'benchmark_without_augmentation_without_shuffle/MNIST' + str(i) + '.txt'
         # filename = 'benchmark_small_architecture_without_augmentation_without_shuffle/MNIST' + str(i) + '.txt'
         # filename = 'benchmark_small_architecture_without_augmentation_without_shuffle/MNIST' + str(i) + '.txt'

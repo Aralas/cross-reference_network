@@ -11,21 +11,21 @@ import random
 import FactoryClass
 from copy import deepcopy
 
-dataset = 'MNIST'
+dataset = 'CIFAR10'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[3, 5, 5], [6, 5, 5], [150]]
-noise_level = 1
+model_architecture = [[6, 5, 5], [6, 5, 5], [6, 5, 5], [200]]
+noise_level = 0.5
 augmentation = False
 dropout = 0.5
-learning_rate = 0.0003
+learning_rate = 0.001
 batch_size = 128
-section_num = 20
-epochs = 10
-data_size = 1000
-power_n = 2
-lambda_weight = np.zeros(20)
+section_num = 50
+epochs = 5
+data_size = 2000
+power_n = 4
+lambda_weight = np.zeros(50)
 # lambda_weight = [0, 1, 1, 1, 1,
 #                  1.2, 1.4, 1.6, 1.8, 2,
 #                  2.2, 2.4, 2.6, 2.8, 3.0,
@@ -113,7 +113,7 @@ def run_cross_reference():
     binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
-    record_file = 'test3/' + dataset + '_RunTest3.txt'
+    record_file = 'test3/' + dataset + '_RunTest3_1.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
@@ -155,5 +155,21 @@ def run_cross_reference():
     record.close()
 
 
+
+
+# lambda_weight = 4 * [0, 1, 1, 1, 1,
+#                  1.2, 1.4, 1.6, 1.8, 2,
+#                  2.2, 2.4, 2.6, 2.8, 3.0,
+#                  3.2, 3.4, 3.6, 3.8, 4]
+# run_cross_reference()
+#
+#
+# lambda_weight = 4 * [0, 1, 1, 1, 1,
+#                  1.1, 1.2, 1.3, 1.4, 1.5,
+#                  1.6, 1.7, 1.8, 1.9, 2.0,
+#                  2.1, 2.2, 2.3, 2.4, 2.5]
+# run_cross_reference()
+
+lambda_weight = [0] * 5 + [1] * 5 + [0.5 * x + 1 for x in range(40)]
 for noise_level in [0.5]:
     run_cross_reference()
