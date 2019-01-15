@@ -20,10 +20,10 @@ noise_level = 0.5
 augmentation = False
 dropout = 0.5
 learning_rate = 0.001
-batch_size = 128
-section_num = 50
+batch_size = 200
+section_num = 500
 epochs = 5
-data_size = 2000
+data_size = 100
 power_n = 4
 lambda_weight = np.zeros(50)
 # lambda_weight = [0, 1, 1, 1, 1,
@@ -142,11 +142,14 @@ def run_cross_reference():
             classifier.lamb_weight = lambda_weight[section]
             classifier.reference_output = generate_reference_output(x, label, binary_classifier_list, num_classes)
             classifier.train_model(x, y, batch_size, epochs)
-            loss_train, accuracy_train = classifier.evaluate_model(x, y)
-            loss_test, accuracy_test = classifier.evaluate_model(x_test, multi_label_to_binary_label(y_test, label))
-            record.write(str(section) + '-th section, ' + str(label) + '-th classifier, loss: ' + str(loss_train)
-                         + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
-            record.flush()
+
+            # # evaluate model
+            # loss_train, accuracy_train = classifier.evaluate_model(x, y)
+            # classifier.reference_output = generate_reference_output(x_test, label, binary_classifier_list, num_classes)
+            # loss_test, accuracy_test = classifier.evaluate_model(x_test, multi_label_to_binary_label(y_test, label))
+            # record.write(str(section) + '-th section, ' + str(label) + '-th classifier, loss: ' + str(loss_train)
+            #              + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
+            # record.flush()
         for top_n in range(1, 4):
             accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
             record.write('top ' + str(top_n) + ' test accuracy: ' + str(accuracy_multi) + '\n')
@@ -169,6 +172,7 @@ def run_cross_reference():
 #                  1.6, 1.7, 1.8, 1.9, 2.0,
 #                  2.1, 2.2, 2.3, 2.4, 2.5]
 # run_cross_reference()
+
 
 lambda_weight = [0] * 5 + [1] * 5 + [0.5 * x + 1 for x in range(40)]
 for noise_level in [0.5]:

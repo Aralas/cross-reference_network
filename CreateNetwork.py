@@ -90,9 +90,13 @@ class CreateCNN(CreateNetwork):
         return model
 
     def train_model(self, x, y, batch_size, epochs):
+        adam = Adam(lr=self.learning_rate)
+        self.model.compile(loss=self.cross_ref_loss, metrics=['accuracy'], optimizer=adam)
         self.model.fit(x, y, batch_size=batch_size, epochs=epochs)
 
     def evaluate_model(self, x, y):
+        adam = Adam(lr=self.learning_rate)
+        self.model.compile(loss=self.cross_ref_loss, metrics=['accuracy'], optimizer=adam)
         loss, accuracy = self.model.evaluate(x, y)
         return loss, accuracy
 
@@ -126,4 +130,4 @@ class CreateFullyConnected(CreateNetwork):
 
     def train_model(self, x, y, batch_size, epochs):
         self.model.fit(x, y, batch_size=batch_size, epochs=epochs)
-        return score
+
