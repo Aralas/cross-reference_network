@@ -152,7 +152,7 @@ def run_cross_reference():
             # record.flush()
         for top_n in range(1, 4):
             accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
-            record.write('top ' + str(top_n) + ' test accuracy: ' + str(accuracy_multi) + '\n')
+            record.write(str(section) + '-th section, top ' + str(top_n) + ' test accuracy: ' + str(accuracy_multi) + '\n')
             record.flush()
     record.write('*' * 30 + '\n')
     record.close()
