@@ -28,7 +28,7 @@ class CreateNetwork(object):
 
     def phi_threshold(self, x):
         if x >= 0.5:
-            return np.power(x, self.power_n)
+            return np.power(x-0.5, self.power_n)
         else:
             return 0
 

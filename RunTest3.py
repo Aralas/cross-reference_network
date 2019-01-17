@@ -11,17 +11,17 @@ import random
 import FactoryClass
 from copy import deepcopy
 
-dataset = 'CIFAR10'
+dataset = 'MNIST'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[6, 5, 5], [6, 5, 5], [6, 5, 5], [200]]
+model_architecture = [[3, 5, 5], [6, 5, 5], [150]]
 noise_level = 0.5
 augmentation = False
 dropout = 0.5
 learning_rate = 0.001
 batch_size = 200
-section_num = 500
+section_num = 50
 epochs = 5
 data_size = 100
 power_n = 4
@@ -113,7 +113,7 @@ def run_cross_reference():
     binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
-    record_file = 'test3/' + dataset + '_RunTest3_1.txt'
+    record_file = 'test5/' + dataset + '_RunTest3_1.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
@@ -129,7 +129,7 @@ def run_cross_reference():
     for label in range(num_classes):
         binary_classifier_list.append(model_object.choose_network_creator())
 
-    for top_n in range(1, 4):
+    for top_n in range(1, 2):
         accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
         record.write('top ' + str(top_n) + ' test accuracy before training: ' + str(accuracy_multi) + '\n')
         record.flush()
@@ -150,7 +150,7 @@ def run_cross_reference():
             # record.write(str(section) + '-th section, ' + str(label) + '-th classifier, loss: ' + str(loss_train)
             #              + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
             # record.flush()
-        for top_n in range(1, 4):
+        for top_n in range(1, 2):
             accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
             record.write(str(section) + '-th section, top ' + str(top_n) + ' test accuracy: ' + str(accuracy_multi) + '\n')
             record.flush()
@@ -174,6 +174,6 @@ def run_cross_reference():
 # run_cross_reference()
 
 
-lambda_weight = [0] * 5 + [1] * 5 + [0.5 * x + 1 for x in range(40)]
-for noise_level in [0.5]:
+lambda_weight = [0.5 * x for x in range(50)]
+for noise_level in [0.5, 0.8]:
     run_cross_reference()
