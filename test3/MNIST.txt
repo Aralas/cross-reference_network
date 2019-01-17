@@ -1,0 +1,666 @@
+model architecture: [[32, 5, 5], [64, 5, 5], [1500]]
+noise level: 0.3
+augmentation: True
+learning rate: 0.001
+batch size: 128
+epoch: 20
+data size: 1000
+first merged section: 5
+section: 50
+update threshold: [0.8, 0.6]
+first update section: 50
+first value to label section: 10
+top 1 test accuracy before training: 0.1274
+top 2 test accuracy before training: 0.2044
+top 3 test accuracy before training: 0.3191
+0-th section, 0-th classifier, loss: 0.022266384787857533, train accuracy: 0.9795, test accuracy:0.8125
+0-th section, 1-th classifier, loss: 0.016900190627202393, train accuracy: 0.9855, test accuracy:0.8672
+0-th section, 2-th classifier, loss: 0.024256332520395517, train accuracy: 0.977, test accuracy:0.8156
+0-th section, 3-th classifier, loss: 0.02056430684495717, train accuracy: 0.981, test accuracy:0.8876
+0-th section, 4-th classifier, loss: 0.02269191457889974, train accuracy: 0.979, test accuracy:0.8658
+0-th section, 5-th classifier, loss: 0.02567051323503256, train accuracy: 0.9745, test accuracy:0.8618
+0-th section, 6-th classifier, loss: 0.023049821082502604, train accuracy: 0.9775, test accuracy:0.8378
+0-th section, 7-th classifier, loss: 0.014075144459493458, train accuracy: 0.9875, test accuracy:0.8911
+0-th section, 8-th classifier, loss: 0.03370625671744347, train accuracy: 0.967, test accuracy:0.9098
+0-th section, 9-th classifier, loss: 0.01810048681870103, train accuracy: 0.982, test accuracy:0.879
+top 1 test accuracy: 0.913
+top 2 test accuracy: 0.9605
+top 3 test accuracy: 0.9766
+1-th section, 0-th classifier, loss: 0.010705528252292424, train accuracy: 0.991, test accuracy:0.8851
+1-th section, 1-th classifier, loss: 0.014652405473403633, train accuracy: 0.9855, test accuracy:0.9068
+1-th section, 2-th classifier, loss: 0.00918182124942541, train accuracy: 0.992, test accuracy:0.7936
+1-th section, 3-th classifier, loss: 0.01662041858024895, train accuracy: 0.9855, test accuracy:0.9108
+1-th section, 4-th classifier, loss: 0.01451809849613346, train accuracy: 0.9855, test accuracy:0.8349
+1-th section, 5-th classifier, loss: 0.010035265597631224, train accuracy: 0.9905, test accuracy:0.8659
+1-th section, 6-th classifier, loss: 0.014134324844228104, train accuracy: 0.987, test accuracy:0.865
+1-th section, 7-th classifier, loss: 0.013726903309114278, train accuracy: 0.987, test accuracy:0.8393
+1-th section, 8-th classifier, loss: 0.01713223722577095, train accuracy: 0.9855, test accuracy:0.7318
+1-th section, 9-th classifier, loss: 0.011706618417520076, train accuracy: 0.989, test accuracy:0.8176
+top 1 test accuracy: 0.9166
+top 2 test accuracy: 0.9642
+top 3 test accuracy: 0.9813
+2-th section, 0-th classifier, loss: 0.015240019536227918, train accuracy: 0.985, test accuracy:0.8323
+2-th section, 1-th classifier, loss: 0.027342638896778227, train accuracy: 0.973, test accuracy:0.9215
+2-th section, 2-th classifier, loss: 0.010926218395587058, train accuracy: 0.9895, test accuracy:0.8521
+2-th section, 3-th classifier, loss: 0.017483416199102066, train accuracy: 0.983, test accuracy:0.791
+2-th section, 4-th classifier, loss: 0.01567122708205716, train accuracy: 0.985, test accuracy:0.9179
+2-th section, 5-th classifier, loss: 0.022292220489121974, train accuracy: 0.9785, test accuracy:0.7907
+2-th section, 6-th classifier, loss: 0.022596608366584406, train accuracy: 0.9775, test accuracy:0.8392
+2-th section, 7-th classifier, loss: 0.018582365192938596, train accuracy: 0.982, test accuracy:0.8548
+2-th section, 8-th classifier, loss: 0.020450050020124764, train accuracy: 0.9785, test accuracy:0.8837
+2-th section, 9-th classifier, loss: 0.013022609898354858, train accuracy: 0.9875, test accuracy:0.7693
+top 1 test accuracy: 0.935
+top 2 test accuracy: 0.9731
+top 3 test accuracy: 0.9833
+3-th section, 0-th classifier, loss: 0.02329077971028164, train accuracy: 0.9765, test accuracy:0.8522
+3-th section, 1-th classifier, loss: 0.02034745246882085, train accuracy: 0.9795, test accuracy:0.8724
+3-th section, 2-th classifier, loss: 0.01345123096840689, train accuracy: 0.9875, test accuracy:0.8132
+3-th section, 3-th classifier, loss: 0.02227926385807223, train accuracy: 0.978, test accuracy:0.8511
+3-th section, 4-th classifier, loss: 0.019664593434659764, train accuracy: 0.9805, test accuracy:0.8335
+3-th section, 5-th classifier, loss: 0.013951818903558887, train accuracy: 0.9865, test accuracy:0.8759
+3-th section, 6-th classifier, loss: 0.024574654977535828, train accuracy: 0.976, test accuracy:0.8359
+3-th section, 7-th classifier, loss: 0.02250520873698406, train accuracy: 0.9775, test accuracy:0.8175
+3-th section, 8-th classifier, loss: 0.01885693931300193, train accuracy: 0.982, test accuracy:0.7123
+3-th section, 9-th classifier, loss: 0.014378996652550996, train accuracy: 0.986, test accuracy:0.8573
+top 1 test accuracy: 0.9472
+top 2 test accuracy: 0.9764
+top 3 test accuracy: 0.987
+4-th section, 0-th classifier, loss: 0.016345941180770752, train accuracy: 0.984, test accuracy:0.8089
+4-th section, 1-th classifier, loss: 0.03476025094580837, train accuracy: 0.965, test accuracy:0.9065
+4-th section, 2-th classifier, loss: 0.01916374084027484, train accuracy: 0.981, test accuracy:0.8401
+4-th section, 3-th classifier, loss: 0.024822945016261654, train accuracy: 0.975, test accuracy:0.8825
+4-th section, 4-th classifier, loss: 0.025509502337896266, train accuracy: 0.974, test accuracy:0.845
+4-th section, 5-th classifier, loss: 0.019951159633696078, train accuracy: 0.98, test accuracy:0.8347
+4-th section, 6-th classifier, loss: 0.0237966800336726, train accuracy: 0.9765, test accuracy:0.8762
+4-th section, 7-th classifier, loss: 0.018189435579872223, train accuracy: 0.982, test accuracy:0.8759
+4-th section, 8-th classifier, loss: 0.01419482020137366, train accuracy: 0.986, test accuracy:0.8761
+4-th section, 9-th classifier, loss: 0.015684132252936252, train accuracy: 0.9845, test accuracy:0.8637
+top 1 test accuracy: 0.9434
+top 2 test accuracy: 0.9753
+top 3 test accuracy: 0.9829
+5-th section, 0-th classifier, loss: 0.0016377665679901839, train accuracy: 0.0, test accuracy:0.5241
+5-th section, 1-th classifier, loss: 0.002002856779843569, train accuracy: 0.0, test accuracy:0.6081
+5-th section, 2-th classifier, loss: 0.0008907570992596447, train accuracy: 0.0, test accuracy:0.6678
+5-th section, 3-th classifier, loss: 0.0011906270892359317, train accuracy: 0.0, test accuracy:0.6797
+5-th section, 4-th classifier, loss: 0.0010728137693367897, train accuracy: 0.0, test accuracy:0.7041
+5-th section, 5-th classifier, loss: 0.00115014334814623, train accuracy: 0.0, test accuracy:0.6759
+5-th section, 6-th classifier, loss: 0.0006363366688601673, train accuracy: 0.0, test accuracy:0.7643
+5-th section, 7-th classifier, loss: 0.0008905005352571607, train accuracy: 0.0, test accuracy:0.7657
+5-th section, 8-th classifier, loss: 0.0011317505994811654, train accuracy: 0.0, test accuracy:0.8024
+5-th section, 9-th classifier, loss: 0.0012052858429960906, train accuracy: 0.0, test accuracy:0.8151
+top 1 test accuracy: 0.8284
+top 2 test accuracy: 0.9391
+top 3 test accuracy: 0.9699
+6-th section, 0-th classifier, loss: 0.000575754838064313, train accuracy: 0.0, test accuracy:0.8261
+6-th section, 1-th classifier, loss: 0.001091516114305705, train accuracy: 0.0, test accuracy:0.8437
+6-th section, 2-th classifier, loss: 0.0006307679596357047, train accuracy: 0.0, test accuracy:0.8234
+6-th section, 3-th classifier, loss: 0.0005917520665097982, train accuracy: 0.0, test accuracy:0.8088
+6-th section, 4-th classifier, loss: 0.0005431274953298271, train accuracy: 0.0, test accuracy:0.8044
+6-th section, 5-th classifier, loss: 0.0007172799720428884, train accuracy: 0.0, test accuracy:0.788
+6-th section, 6-th classifier, loss: 0.0004642286305315793, train accuracy: 0.0, test accuracy:0.7979
+6-th section, 7-th classifier, loss: 0.0004915382866747677, train accuracy: 0.0, test accuracy:0.7993
+6-th section, 8-th classifier, loss: 0.0006653271415270864, train accuracy: 0.0, test accuracy:0.7892
+6-th section, 9-th classifier, loss: 0.0006520842183381319, train accuracy: 0.0, test accuracy:0.7812
+top 1 test accuracy: 0.8824
+top 2 test accuracy: 0.9656
+top 3 test accuracy: 0.9848
+7-th section, 0-th classifier, loss: 0.00045344945346005263, train accuracy: 0.0, test accuracy:0.8237
+7-th section, 1-th classifier, loss: 0.0008366455710493028, train accuracy: 0.0, test accuracy:0.8708
+7-th section, 2-th classifier, loss: 0.0004896098778117448, train accuracy: 0.0, test accuracy:0.8325
+7-th section, 3-th classifier, loss: 0.00043040364957414566, train accuracy: 0.0, test accuracy:0.8283
+7-th section, 4-th classifier, loss: 0.0005078082245308906, train accuracy: 0.0, test accuracy:0.8018
+7-th section, 5-th classifier, loss: 0.0005613981476053595, train accuracy: 0.0, test accuracy:0.7814
+7-th section, 6-th classifier, loss: 0.0004543607854284346, train accuracy: 0.0, test accuracy:0.8577
+7-th section, 7-th classifier, loss: 0.0003506806814111769, train accuracy: 0.0, test accuracy:0.8284
+7-th section, 8-th classifier, loss: 0.0005553081424441189, train accuracy: 0.0, test accuracy:0.8289
+7-th section, 9-th classifier, loss: 0.000516102300491184, train accuracy: 0.0, test accuracy:0.7879
+top 1 test accuracy: 0.9086
+top 2 test accuracy: 0.9725
+top 3 test accuracy: 0.987
+8-th section, 0-th classifier, loss: 0.0004178453064523637, train accuracy: 0.0, test accuracy:0.8185
+8-th section, 1-th classifier, loss: 0.0007175069153308868, train accuracy: 0.0, test accuracy:0.8558
+8-th section, 2-th classifier, loss: 0.0004826061136554927, train accuracy: 0.0, test accuracy:0.8451
+8-th section, 3-th classifier, loss: 0.0005150627219118178, train accuracy: 0.0, test accuracy:0.8382
+8-th section, 4-th classifier, loss: 0.00040810432098805906, train accuracy: 0.0, test accuracy:0.8281
+8-th section, 5-th classifier, loss: 0.0005082080673892051, train accuracy: 0.0, test accuracy:0.8248
+8-th section, 6-th classifier, loss: 0.0006303440472111106, train accuracy: 0.0, test accuracy:0.858
+8-th section, 7-th classifier, loss: 0.0004431410545948893, train accuracy: 0.0, test accuracy:0.8167
+8-th section, 8-th classifier, loss: 0.0005530978438910097, train accuracy: 0.0, test accuracy:0.8168
+8-th section, 9-th classifier, loss: 0.00047303724847733977, train accuracy: 0.0, test accuracy:0.8085
+top 1 test accuracy: 0.9081
+top 2 test accuracy: 0.9716
+top 3 test accuracy: 0.987
+9-th section, 0-th classifier, loss: 0.0004148207679390907, train accuracy: 0.0, test accuracy:0.8574
+9-th section, 1-th classifier, loss: 0.0007314046262763441, train accuracy: 0.0, test accuracy:0.8533
+9-th section, 2-th classifier, loss: 0.0004621302145533264, train accuracy: 0.0, test accuracy:0.8448
+9-th section, 3-th classifier, loss: 0.00044002416683360933, train accuracy: 0.0, test accuracy:0.8144
+9-th section, 4-th classifier, loss: 0.0004339530104771256, train accuracy: 0.0, test accuracy:0.8467
+9-th section, 5-th classifier, loss: 0.0005744891206268221, train accuracy: 0.0, test accuracy:0.8063
+9-th section, 6-th classifier, loss: 0.00046750595956109465, train accuracy: 0.0, test accuracy:0.8371
+9-th section, 7-th classifier, loss: 0.0004398674804251641, train accuracy: 0.0, test accuracy:0.8339
+9-th section, 8-th classifier, loss: 0.0005099949091672897, train accuracy: 0.0, test accuracy:0.8139
+9-th section, 9-th classifier, loss: 0.0004705833909101784, train accuracy: 0.0, test accuracy:0.8541
+top 1 test accuracy: 0.9184
+top 2 test accuracy: 0.9741
+top 3 test accuracy: 0.989
+10-th section, 0-th classifier, loss: 0.00047982217697426676, train accuracy: 0.0, test accuracy:0.8327
+10-th section, 1-th classifier, loss: 0.0005238239113241434, train accuracy: 0.0, test accuracy:0.8799
+10-th section, 2-th classifier, loss: 0.0004890863075852394, train accuracy: 0.0, test accuracy:0.8579
+10-th section, 3-th classifier, loss: 0.0004152303140144795, train accuracy: 0.0, test accuracy:0.8136
+10-th section, 4-th classifier, loss: 0.00043819115357473495, train accuracy: 0.0, test accuracy:0.8444
+10-th section, 5-th classifier, loss: 0.0005646755651105195, train accuracy: 0.0, test accuracy:0.833
+10-th section, 6-th classifier, loss: 0.0004422186417505145, train accuracy: 0.0, test accuracy:0.8509
+10-th section, 7-th classifier, loss: 0.00043180005939211696, train accuracy: 0.0, test accuracy:0.8387
+10-th section, 8-th classifier, loss: 0.0005220596704166383, train accuracy: 0.0, test accuracy:0.8169
+10-th section, 9-th classifier, loss: 0.0005766603974625468, train accuracy: 0.0, test accuracy:0.8432
+top 1 test accuracy: 0.928
+top 2 test accuracy: 0.9765
+top 3 test accuracy: 0.9887
+11-th section, 0-th classifier, loss: 0.005174018397054169, train accuracy: 0.995, test accuracy:0.9137
+11-th section, 1-th classifier, loss: 0.0041365680947710644, train accuracy: 0.996, test accuracy:0.918
+11-th section, 2-th classifier, loss: 0.0035859441773209255, train accuracy: 0.9965, test accuracy:0.8712
+11-th section, 3-th classifier, loss: 0.005017859739957203, train accuracy: 0.995, test accuracy:0.9058
+11-th section, 4-th classifier, loss: 0.006958999967362615, train accuracy: 0.993, test accuracy:0.804
+11-th section, 5-th classifier, loss: 0.0035889085954549957, train accuracy: 0.9965, test accuracy:0.9128
+11-th section, 6-th classifier, loss: 0.005608377211763582, train accuracy: 0.9945, test accuracy:0.9004
+11-th section, 7-th classifier, loss: 0.004035843171004671, train accuracy: 0.996, test accuracy:0.8729
+11-th section, 8-th classifier, loss: 0.0019825815417279955, train accuracy: 0.998, test accuracy:0.8693
+11-th section, 9-th classifier, loss: 0.004681117231139069, train accuracy: 0.995, test accuracy:0.8351
+top 1 test accuracy: 0.9335
+top 2 test accuracy: 0.9753
+top 3 test accuracy: 0.9892
+12-th section, 0-th classifier, loss: 0.009064006041211542, train accuracy: 0.991, test accuracy:0.9058
+12-th section, 1-th classifier, loss: 0.019297646952072683, train accuracy: 0.9805, test accuracy:0.9167
+12-th section, 2-th classifier, loss: 0.009554892734711757, train accuracy: 0.9905, test accuracy:0.8444
+12-th section, 3-th classifier, loss: 0.00802433217134967, train accuracy: 0.992, test accuracy:0.8574
+12-th section, 4-th classifier, loss: 0.01126716723611753, train accuracy: 0.9885, test accuracy:0.8758
+12-th section, 5-th classifier, loss: 0.007096435807347007, train accuracy: 0.993, test accuracy:0.8451
+12-th section, 6-th classifier, loss: 0.01052925338271598, train accuracy: 0.9895, test accuracy:0.8853
+12-th section, 7-th classifier, loss: 0.011301393487548921, train accuracy: 0.9885, test accuracy:0.864
+12-th section, 8-th classifier, loss: 0.004253952967672376, train accuracy: 0.996, test accuracy:0.8941
+12-th section, 9-th classifier, loss: 0.008068916753734811, train accuracy: 0.992, test accuracy:0.8509
+top 1 test accuracy: 0.9454
+top 2 test accuracy: 0.978
+top 3 test accuracy: 0.988
+13-th section, 0-th classifier, loss: 0.020550372645935566, train accuracy: 0.9795, test accuracy:0.9001
+13-th section, 1-th classifier, loss: 0.01945282660437806, train accuracy: 0.9805, test accuracy:0.8943
+13-th section, 2-th classifier, loss: 0.012129108168650418, train accuracy: 0.988, test accuracy:0.9043
+13-th section, 3-th classifier, loss: 0.013100211523433245, train accuracy: 0.987, test accuracy:0.8679
+13-th section, 4-th classifier, loss: 0.013180595626370632, train accuracy: 0.9865, test accuracy:0.8876
+13-th section, 5-th classifier, loss: 0.012029746178770439, train accuracy: 0.988, test accuracy:0.9065
+13-th section, 6-th classifier, loss: 0.01253586584739969, train accuracy: 0.9875, test accuracy:0.8792
+13-th section, 7-th classifier, loss: 0.007172204351692926, train accuracy: 0.993, test accuracy:0.8306
+13-th section, 8-th classifier, loss: 0.01004059424866864, train accuracy: 0.99, test accuracy:0.8766
+13-th section, 9-th classifier, loss: 0.013407898813487919, train accuracy: 0.9865, test accuracy:0.8904
+top 1 test accuracy: 0.9548
+top 2 test accuracy: 0.9832
+top 3 test accuracy: 0.9923
+14-th section, 0-th classifier, loss: 0.007181029910978395, train accuracy: 0.993, test accuracy:0.8858
+14-th section, 1-th classifier, loss: 0.017409398506351863, train accuracy: 0.9825, test accuracy:0.9006
+14-th section, 2-th classifier, loss: 0.013090362712246133, train accuracy: 0.987, test accuracy:0.8363
+14-th section, 3-th classifier, loss: 0.013023871207715275, train accuracy: 0.987, test accuracy:0.8809
+14-th section, 4-th classifier, loss: 0.01449356317443926, train accuracy: 0.9855, test accuracy:0.9058
+14-th section, 5-th classifier, loss: 0.008478694613999324, train accuracy: 0.9915, test accuracy:0.8538
+14-th section, 6-th classifier, loss: 0.0144895281521749, train accuracy: 0.9855, test accuracy:0.8863
+14-th section, 7-th classifier, loss: 0.010612943794461899, train accuracy: 0.9895, test accuracy:0.8911
+14-th section, 8-th classifier, loss: 0.013877421288540063, train accuracy: 0.986, test accuracy:0.8854
+14-th section, 9-th classifier, loss: 0.012092135081154993, train accuracy: 0.988, test accuracy:0.859
+top 1 test accuracy: 0.9501
+top 2 test accuracy: 0.9804
+top 3 test accuracy: 0.9894
+15-th section, 0-th classifier, loss: 0.01307214854824997, train accuracy: 0.987, test accuracy:0.9001
+15-th section, 1-th classifier, loss: 0.013044037287418177, train accuracy: 0.987, test accuracy:0.9148
+15-th section, 2-th classifier, loss: 0.010064975569701345, train accuracy: 0.99, test accuracy:0.8904
+15-th section, 3-th classifier, loss: 0.011124356903324951, train accuracy: 0.989, test accuracy:0.8781
+15-th section, 4-th classifier, loss: 0.013985926517278131, train accuracy: 0.986, test accuracy:0.8979
+15-th section, 5-th classifier, loss: 0.016084920261193476, train accuracy: 0.984, test accuracy:0.8903
+15-th section, 6-th classifier, loss: 0.013055244436487555, train accuracy: 0.987, test accuracy:0.9022
+15-th section, 7-th classifier, loss: 0.009996936230440042, train accuracy: 0.99, test accuracy:0.8714
+15-th section, 8-th classifier, loss: 0.01539962080589612, train accuracy: 0.9845, test accuracy:0.8805
+15-th section, 9-th classifier, loss: 0.015536422883626073, train accuracy: 0.9845, test accuracy:0.8765
+top 1 test accuracy: 0.9617
+top 2 test accuracy: 0.9846
+top 3 test accuracy: 0.9922
+16-th section, 0-th classifier, loss: 0.01653962055273587, train accuracy: 0.9835, test accuracy:0.9018
+16-th section, 1-th classifier, loss: 0.015856217046108213, train accuracy: 0.984, test accuracy:0.9209
+16-th section, 2-th classifier, loss: 0.006492997927358374, train accuracy: 0.993, test accuracy:0.8949
+16-th section, 3-th classifier, loss: 0.014019941186714277, train accuracy: 0.986, test accuracy:0.8803
+16-th section, 4-th classifier, loss: 0.024542339379026088, train accuracy: 0.9755, test accuracy:0.8687
+16-th section, 5-th classifier, loss: 0.01366603437832964, train accuracy: 0.986, test accuracy:0.8916
+16-th section, 6-th classifier, loss: 0.012151425458701851, train accuracy: 0.988, test accuracy:0.8757
+16-th section, 7-th classifier, loss: 0.018187666748301128, train accuracy: 0.9815, test accuracy:0.9012
+16-th section, 8-th classifier, loss: 0.009597726528925704, train accuracy: 0.9905, test accuracy:0.8841
+16-th section, 9-th classifier, loss: 0.015193803090733126, train accuracy: 0.9845, test accuracy:0.8993
+top 1 test accuracy: 0.9547
+top 2 test accuracy: 0.9808
+top 3 test accuracy: 0.9889
+17-th section, 0-th classifier, loss: 0.021702025287660943, train accuracy: 0.9785, test accuracy:0.8714
+17-th section, 1-th classifier, loss: 0.01805125172145199, train accuracy: 0.982, test accuracy:0.9314
+17-th section, 2-th classifier, loss: 0.011677829497479251, train accuracy: 0.9885, test accuracy:0.9077
+17-th section, 3-th classifier, loss: 0.016833720358787104, train accuracy: 0.9835, test accuracy:0.8716
+17-th section, 4-th classifier, loss: 0.018109073616491514, train accuracy: 0.982, test accuracy:0.891
+17-th section, 5-th classifier, loss: 0.0175045539015573, train accuracy: 0.9825, test accuracy:0.8953
+17-th section, 6-th classifier, loss: 0.01428707319337991, train accuracy: 0.986, test accuracy:0.8864
+17-th section, 7-th classifier, loss: 0.014037606054087519, train accuracy: 0.986, test accuracy:0.8871
+17-th section, 8-th classifier, loss: 0.01011069133853016, train accuracy: 0.99, test accuracy:0.8988
+17-th section, 9-th classifier, loss: 0.016429599131792202, train accuracy: 0.9835, test accuracy:0.8652
+top 1 test accuracy: 0.9623
+top 2 test accuracy: 0.9853
+top 3 test accuracy: 0.9908
+18-th section, 0-th classifier, loss: 0.017025673623451438, train accuracy: 0.983, test accuracy:0.9262
+18-th section, 1-th classifier, loss: 0.022525624025984143, train accuracy: 0.9775, test accuracy:0.9156
+18-th section, 2-th classifier, loss: 0.012849021014590107, train accuracy: 0.987, test accuracy:0.8835
+18-th section, 3-th classifier, loss: 0.011562870465524611, train accuracy: 0.9885, test accuracy:0.8457
+18-th section, 4-th classifier, loss: 0.02702487040808046, train accuracy: 0.973, test accuracy:0.901
+18-th section, 5-th classifier, loss: 0.014140493845290621, train accuracy: 0.986, test accuracy:0.9015
+18-th section, 6-th classifier, loss: 0.016026336606148106, train accuracy: 0.984, test accuracy:0.8964
+18-th section, 7-th classifier, loss: 0.019051170659819035, train accuracy: 0.981, test accuracy:0.8921
+18-th section, 8-th classifier, loss: 0.008967458265877212, train accuracy: 0.991, test accuracy:0.8724
+18-th section, 9-th classifier, loss: 0.020525684312036902, train accuracy: 0.9795, test accuracy:0.9053
+top 1 test accuracy: 0.9647
+top 2 test accuracy: 0.9876
+top 3 test accuracy: 0.9925
+19-th section, 0-th classifier, loss: 0.011524465739130392, train accuracy: 0.9885, test accuracy:0.9014
+19-th section, 1-th classifier, loss: 0.022083661188844417, train accuracy: 0.978, test accuracy:0.8977
+19-th section, 2-th classifier, loss: 0.01753738633867033, train accuracy: 0.9825, test accuracy:0.9177
+19-th section, 3-th classifier, loss: 0.014559155521681532, train accuracy: 0.9855, test accuracy:0.891
+19-th section, 4-th classifier, loss: 0.016653870322188596, train accuracy: 0.9835, test accuracy:0.8534
+19-th section, 5-th classifier, loss: 0.012023542830022053, train accuracy: 0.988, test accuracy:0.8718
+19-th section, 6-th classifier, loss: 0.015153286699911405, train accuracy: 0.985, test accuracy:0.9048
+19-th section, 7-th classifier, loss: 0.015044680998835247, train accuracy: 0.985, test accuracy:0.9192
+19-th section, 8-th classifier, loss: 0.01656955960860796, train accuracy: 0.983, test accuracy:0.9088
+19-th section, 9-th classifier, loss: 0.01759992350677203, train accuracy: 0.9825, test accuracy:0.8784
+top 1 test accuracy: 0.9596
+top 2 test accuracy: 0.9838
+top 3 test accuracy: 0.9917
+20-th section, 0-th classifier, loss: 0.020306898230235675, train accuracy: 0.9795, test accuracy:0.8913
+20-th section, 1-th classifier, loss: 0.019044445298310165, train accuracy: 0.981, test accuracy:0.9181
+20-th section, 2-th classifier, loss: 0.01849351996437326, train accuracy: 0.9815, test accuracy:0.8772
+20-th section, 3-th classifier, loss: 0.011054498894824065, train accuracy: 0.989, test accuracy:0.8762
+20-th section, 4-th classifier, loss: 0.015464762677445834, train accuracy: 0.9835, test accuracy:0.8761
+20-th section, 5-th classifier, loss: 0.017567591644299684, train accuracy: 0.9825, test accuracy:0.8603
+20-th section, 6-th classifier, loss: 0.01651923718486796, train accuracy: 0.9835, test accuracy:0.894
+20-th section, 7-th classifier, loss: 0.01708352903492778, train accuracy: 0.983, test accuracy:0.9042
+20-th section, 8-th classifier, loss: 0.017076379145397367, train accuracy: 0.983, test accuracy:0.8812
+20-th section, 9-th classifier, loss: 0.011538696339452145, train accuracy: 0.9885, test accuracy:0.8759
+top 1 test accuracy: 0.9713
+top 2 test accuracy: 0.9888
+top 3 test accuracy: 0.9944
+21-th section, 0-th classifier, loss: 0.0164514718265782, train accuracy: 0.9835, test accuracy:0.885
+21-th section, 1-th classifier, loss: 0.017031915704390485, train accuracy: 0.983, test accuracy:0.898
+21-th section, 2-th classifier, loss: 0.016374952484067763, train accuracy: 0.9835, test accuracy:0.8828
+21-th section, 3-th classifier, loss: 0.020046433505773165, train accuracy: 0.98, test accuracy:0.9113
+21-th section, 4-th classifier, loss: 0.015502449463112498, train accuracy: 0.9845, test accuracy:0.9276
+21-th section, 5-th classifier, loss: 0.019435497134778417, train accuracy: 0.9805, test accuracy:0.8957
+21-th section, 6-th classifier, loss: 0.010912101387817529, train accuracy: 0.989, test accuracy:0.8844
+21-th section, 7-th classifier, loss: 0.020658096618390118, train accuracy: 0.979, test accuracy:0.8756
+21-th section, 8-th classifier, loss: 0.014028195062823216, train accuracy: 0.986, test accuracy:0.907
+21-th section, 9-th classifier, loss: 0.01604326971329283, train accuracy: 0.984, test accuracy:0.8793
+top 1 test accuracy: 0.9676
+top 2 test accuracy: 0.9868
+top 3 test accuracy: 0.9922
+22-th section, 0-th classifier, loss: 0.01955172949630105, train accuracy: 0.9805, test accuracy:0.8906
+22-th section, 1-th classifier, loss: 0.01648982237152268, train accuracy: 0.9835, test accuracy:0.9352
+22-th section, 2-th classifier, loss: 0.015374351875911088, train accuracy: 0.9845, test accuracy:0.9363
+22-th section, 3-th classifier, loss: 0.015994145013708477, train accuracy: 0.984, test accuracy:0.9244
+22-th section, 4-th classifier, loss: 0.014034430848719694, train accuracy: 0.986, test accuracy:0.9003
+22-th section, 5-th classifier, loss: 0.0145636249483141, train accuracy: 0.9855, test accuracy:0.8624
+22-th section, 6-th classifier, loss: 0.013026949921732011, train accuracy: 0.9865, test accuracy:0.9063
+22-th section, 7-th classifier, loss: 0.0170329805121728, train accuracy: 0.983, test accuracy:0.9174
+22-th section, 8-th classifier, loss: 0.015556003507299465, train accuracy: 0.9845, test accuracy:0.8972
+22-th section, 9-th classifier, loss: 0.019870277298574365, train accuracy: 0.98, test accuracy:0.9198
+top 1 test accuracy: 0.9732
+top 2 test accuracy: 0.989
+top 3 test accuracy: 0.9935
+23-th section, 0-th classifier, loss: 0.018091786398017576, train accuracy: 0.9815, test accuracy:0.8912
+23-th section, 1-th classifier, loss: 0.016607270416145185, train accuracy: 0.9835, test accuracy:0.9127
+23-th section, 2-th classifier, loss: 0.010052482908417005, train accuracy: 0.99, test accuracy:0.9157
+23-th section, 3-th classifier, loss: 0.01651660365165117, train accuracy: 0.9835, test accuracy:0.892
+23-th section, 4-th classifier, loss: 0.01003423696532991, train accuracy: 0.99, test accuracy:0.9233
+23-th section, 5-th classifier, loss: 0.016885938315026577, train accuracy: 0.983, test accuracy:0.916
+23-th section, 6-th classifier, loss: 0.011042848022465478, train accuracy: 0.989, test accuracy:0.9114
+23-th section, 7-th classifier, loss: 0.01799256615584818, train accuracy: 0.982, test accuracy:0.9005
+23-th section, 8-th classifier, loss: 0.013554129757802002, train accuracy: 0.9865, test accuracy:0.9357
+23-th section, 9-th classifier, loss: 0.019811315634397034, train accuracy: 0.98, test accuracy:0.907
+top 1 test accuracy: 0.9721
+top 2 test accuracy: 0.9891
+top 3 test accuracy: 0.994
+24-th section, 0-th classifier, loss: 0.016807041163508982, train accuracy: 0.983, test accuracy:0.9188
+24-th section, 1-th classifier, loss: 0.018130868445845407, train accuracy: 0.9815, test accuracy:0.9287
+24-th section, 2-th classifier, loss: 0.01511174372198002, train accuracy: 0.985, test accuracy:0.8859
+24-th section, 3-th classifier, loss: 0.01693343481356351, train accuracy: 0.983, test accuracy:0.9179
+24-th section, 4-th classifier, loss: 0.013016882802461624, train accuracy: 0.987, test accuracy:0.9048
+24-th section, 5-th classifier, loss: 0.013752268930227728, train accuracy: 0.986, test accuracy:0.8812
+24-th section, 6-th classifier, loss: 0.015566748055854987, train accuracy: 0.9845, test accuracy:0.9381
+24-th section, 7-th classifier, loss: 0.01455530833418652, train accuracy: 0.9855, test accuracy:0.8942
+24-th section, 8-th classifier, loss: 0.012101882251688949, train accuracy: 0.988, test accuracy:0.9022
+24-th section, 9-th classifier, loss: 0.016024718344000575, train accuracy: 0.984, test accuracy:0.8964
+top 1 test accuracy: 0.9715
+top 2 test accuracy: 0.9898
+top 3 test accuracy: 0.9944
+25-th section, 0-th classifier, loss: 0.01809254120172045, train accuracy: 0.9815, test accuracy:0.8807
+25-th section, 1-th classifier, loss: 0.017171053705358645, train accuracy: 0.9825, test accuracy:0.9198
+25-th section, 2-th classifier, loss: 0.015527997394827252, train accuracy: 0.9845, test accuracy:0.9356
+25-th section, 3-th classifier, loss: 0.014037003331628512, train accuracy: 0.986, test accuracy:0.9121
+25-th section, 4-th classifier, loss: 0.019482921326936777, train accuracy: 0.9805, test accuracy:0.9126
+25-th section, 5-th classifier, loss: 0.014806904761003352, train accuracy: 0.985, test accuracy:0.9053
+25-th section, 6-th classifier, loss: 0.013111446766633889, train accuracy: 0.9865, test accuracy:0.9011
+25-th section, 7-th classifier, loss: 0.015012242228698597, train accuracy: 0.985, test accuracy:0.911
+25-th section, 8-th classifier, loss: 0.00884752195276451, train accuracy: 0.991, test accuracy:0.9015
+25-th section, 9-th classifier, loss: 0.015979862181335194, train accuracy: 0.984, test accuracy:0.9147
+top 1 test accuracy: 0.9695
+top 2 test accuracy: 0.9866
+top 3 test accuracy: 0.9925
+26-th section, 0-th classifier, loss: 0.018936117730961995, train accuracy: 0.981, test accuracy:0.9111
+26-th section, 1-th classifier, loss: 0.018900638637405792, train accuracy: 0.981, test accuracy:0.9265
+26-th section, 2-th classifier, loss: 0.01057944038527603, train accuracy: 0.9895, test accuracy:0.9467
+26-th section, 3-th classifier, loss: 0.016516708908311556, train accuracy: 0.9835, test accuracy:0.9252
+26-th section, 4-th classifier, loss: 0.013010542014462771, train accuracy: 0.987, test accuracy:0.9184
+26-th section, 5-th classifier, loss: 0.01651437837149206, train accuracy: 0.9835, test accuracy:0.9218
+26-th section, 6-th classifier, loss: 0.013534067992492056, train accuracy: 0.9865, test accuracy:0.8843
+26-th section, 7-th classifier, loss: 0.012649825801563565, train accuracy: 0.9875, test accuracy:0.918
+26-th section, 8-th classifier, loss: 0.018507233679765703, train accuracy: 0.9815, test accuracy:0.9102
+26-th section, 9-th classifier, loss: 0.01998304300412201, train accuracy: 0.98, test accuracy:0.8656
+top 1 test accuracy: 0.9695
+top 2 test accuracy: 0.9867
+top 3 test accuracy: 0.9928
+27-th section, 0-th classifier, loss: 0.01686441578565882, train accuracy: 0.983, test accuracy:0.9084
+27-th section, 1-th classifier, loss: 0.017947368241155344, train accuracy: 0.982, test accuracy:0.9133
+27-th section, 2-th classifier, loss: 0.01102321385153482, train accuracy: 0.989, test accuracy:0.9024
+27-th section, 3-th classifier, loss: 0.021489460720246597, train accuracy: 0.9785, test accuracy:0.9112
+27-th section, 4-th classifier, loss: 0.01851511911144553, train accuracy: 0.9815, test accuracy:0.9163
+27-th section, 5-th classifier, loss: 0.018513180804198556, train accuracy: 0.9815, test accuracy:0.9141
+27-th section, 6-th classifier, loss: 0.02071561832086627, train accuracy: 0.979, test accuracy:0.91
+27-th section, 7-th classifier, loss: 0.014914745107751969, train accuracy: 0.9845, test accuracy:0.9059
+27-th section, 8-th classifier, loss: 0.013589260745478896, train accuracy: 0.9865, test accuracy:0.9325
+27-th section, 9-th classifier, loss: 0.018706854306572495, train accuracy: 0.981, test accuracy:0.8784
+top 1 test accuracy: 0.9742
+top 2 test accuracy: 0.9894
+top 3 test accuracy: 0.9944
+28-th section, 0-th classifier, loss: 0.01576762309732294, train accuracy: 0.984, test accuracy:0.9073
+28-th section, 1-th classifier, loss: 0.019007266668137162, train accuracy: 0.981, test accuracy:0.9306
+28-th section, 2-th classifier, loss: 0.016387711196881354, train accuracy: 0.9835, test accuracy:0.9139
+28-th section, 3-th classifier, loss: 0.02000761391729975, train accuracy: 0.98, test accuracy:0.9324
+28-th section, 4-th classifier, loss: 0.01255662324034347, train accuracy: 0.9875, test accuracy:0.9211
+28-th section, 5-th classifier, loss: 0.012006784639487478, train accuracy: 0.988, test accuracy:0.9367
+28-th section, 6-th classifier, loss: 0.017423073369033773, train accuracy: 0.9825, test accuracy:0.9456
+28-th section, 7-th classifier, loss: 0.021126458973580155, train accuracy: 0.979, test accuracy:0.904
+28-th section, 8-th classifier, loss: 0.017606319521371917, train accuracy: 0.982, test accuracy:0.9198
+28-th section, 9-th classifier, loss: 0.01885425463593492, train accuracy: 0.981, test accuracy:0.9108
+top 1 test accuracy: 0.9736
+top 2 test accuracy: 0.9881
+top 3 test accuracy: 0.9938
+29-th section, 0-th classifier, loss: 0.01551259723480689, train accuracy: 0.9845, test accuracy:0.9215
+29-th section, 1-th classifier, loss: 0.019513949969874374, train accuracy: 0.9805, test accuracy:0.9168
+29-th section, 2-th classifier, loss: 0.01074558479215557, train accuracy: 0.989, test accuracy:0.9016
+29-th section, 3-th classifier, loss: 0.018979775561630958, train accuracy: 0.981, test accuracy:0.9275
+29-th section, 4-th classifier, loss: 0.019487550566547725, train accuracy: 0.9805, test accuracy:0.9025
+29-th section, 5-th classifier, loss: 0.018911596947189538, train accuracy: 0.981, test accuracy:0.8933
+29-th section, 6-th classifier, loss: 0.013515112839212634, train accuracy: 0.9865, test accuracy:0.8988
+29-th section, 7-th classifier, loss: 0.015004806896453374, train accuracy: 0.985, test accuracy:0.8996
+29-th section, 8-th classifier, loss: 0.015573374090170546, train accuracy: 0.9845, test accuracy:0.8838
+29-th section, 9-th classifier, loss: 0.021442085127782774, train accuracy: 0.9785, test accuracy:0.8903
+top 1 test accuracy: 0.9718
+top 2 test accuracy: 0.9878
+top 3 test accuracy: 0.9925
+30-th section, 0-th classifier, loss: 0.016622151120842317, train accuracy: 0.9835, test accuracy:0.924
+30-th section, 1-th classifier, loss: 0.01901557535947245, train accuracy: 0.981, test accuracy:0.9463
+30-th section, 2-th classifier, loss: 0.015993891817292025, train accuracy: 0.984, test accuracy:0.9072
+30-th section, 3-th classifier, loss: 0.022007141457450415, train accuracy: 0.978, test accuracy:0.9031
+30-th section, 4-th classifier, loss: 0.019009337154856438, train accuracy: 0.981, test accuracy:0.913
+30-th section, 5-th classifier, loss: 0.020527191072906136, train accuracy: 0.9795, test accuracy:0.9111
+30-th section, 6-th classifier, loss: 0.012527821514202515, train accuracy: 0.9875, test accuracy:0.9128
+30-th section, 7-th classifier, loss: 0.014092452202803543, train accuracy: 0.986, test accuracy:0.9192
+30-th section, 8-th classifier, loss: 0.016523718743086648, train accuracy: 0.9835, test accuracy:0.8975
+30-th section, 9-th classifier, loss: 0.02499278801294713, train accuracy: 0.975, test accuracy:0.9257
+top 1 test accuracy: 0.9768
+top 2 test accuracy: 0.9897
+top 3 test accuracy: 0.9941
+31-th section, 0-th classifier, loss: 0.016507384849163826, train accuracy: 0.9835, test accuracy:0.9122
+31-th section, 1-th classifier, loss: 0.015864662799329382, train accuracy: 0.984, test accuracy:0.9244
+31-th section, 2-th classifier, loss: 0.017006364910719638, train accuracy: 0.983, test accuracy:0.9274
+31-th section, 3-th classifier, loss: 0.017576312721761498, train accuracy: 0.9825, test accuracy:0.9035
+31-th section, 4-th classifier, loss: 0.019030341325038534, train accuracy: 0.981, test accuracy:0.9078
+31-th section, 5-th classifier, loss: 0.010033181853428687, train accuracy: 0.99, test accuracy:0.9245
+31-th section, 6-th classifier, loss: 0.01501749719122563, train accuracy: 0.985, test accuracy:0.9026
+31-th section, 7-th classifier, loss: 0.012291179756689417, train accuracy: 0.9875, test accuracy:0.9202
+31-th section, 8-th classifier, loss: 0.013586201466589046, train accuracy: 0.9865, test accuracy:0.9339
+31-th section, 9-th classifier, loss: 0.018015319396464294, train accuracy: 0.982, test accuracy:0.9175
+top 1 test accuracy: 0.9749
+top 2 test accuracy: 0.9897
+top 3 test accuracy: 0.9938
+32-th section, 0-th classifier, loss: 0.019510644667230737, train accuracy: 0.9805, test accuracy:0.9285
+32-th section, 1-th classifier, loss: 0.021996607178467457, train accuracy: 0.978, test accuracy:0.9468
+32-th section, 2-th classifier, loss: 0.0119881721838683, train accuracy: 0.988, test accuracy:0.8956
+32-th section, 3-th classifier, loss: 0.018024848831730195, train accuracy: 0.982, test accuracy:0.9243
+32-th section, 4-th classifier, loss: 0.021010047267619483, train accuracy: 0.979, test accuracy:0.9289
+32-th section, 5-th classifier, loss: 0.018543178950178117, train accuracy: 0.9815, test accuracy:0.9105
+32-th section, 6-th classifier, loss: 0.017383976731975052, train accuracy: 0.9825, test accuracy:0.9071
+32-th section, 7-th classifier, loss: 0.020053462439878787, train accuracy: 0.98, test accuracy:0.9075
+32-th section, 8-th classifier, loss: 0.016064863142685227, train accuracy: 0.9835, test accuracy:0.9496
+32-th section, 9-th classifier, loss: 0.016013488051028618, train accuracy: 0.984, test accuracy:0.9193
+top 1 test accuracy: 0.9717
+top 2 test accuracy: 0.9874
+top 3 test accuracy: 0.9929
+33-th section, 0-th classifier, loss: 0.014008341784724052, train accuracy: 0.986, test accuracy:0.9311
+33-th section, 1-th classifier, loss: 0.015992247727901487, train accuracy: 0.984, test accuracy:0.9262
+33-th section, 2-th classifier, loss: 0.013013806407938318, train accuracy: 0.987, test accuracy:0.9322
+33-th section, 3-th classifier, loss: 0.01737107997925159, train accuracy: 0.9825, test accuracy:0.8894
+33-th section, 4-th classifier, loss: 0.01948864661714515, train accuracy: 0.9805, test accuracy:0.9089
+33-th section, 5-th classifier, loss: 0.011523900172203866, train accuracy: 0.9885, test accuracy:0.8945
+33-th section, 6-th classifier, loss: 0.017481753528156334, train accuracy: 0.9825, test accuracy:0.9128
+33-th section, 7-th classifier, loss: 0.017976058624735742, train accuracy: 0.982, test accuracy:0.908
+33-th section, 8-th classifier, loss: 0.008015862310672674, train accuracy: 0.992, test accuracy:0.9351
+33-th section, 9-th classifier, loss: 0.01857818388495798, train accuracy: 0.9815, test accuracy:0.9275
+top 1 test accuracy: 0.9745
+top 2 test accuracy: 0.9882
+top 3 test accuracy: 0.9936
+34-th section, 0-th classifier, loss: 0.017996480220628656, train accuracy: 0.982, test accuracy:0.938
+34-th section, 1-th classifier, loss: 0.025535095835864923, train accuracy: 0.9745, test accuracy:0.9282
+34-th section, 2-th classifier, loss: 0.008516564136897614, train accuracy: 0.9915, test accuracy:0.9287
+34-th section, 3-th classifier, loss: 0.020065191345769562, train accuracy: 0.98, test accuracy:0.9291
+34-th section, 4-th classifier, loss: 0.019009667753707618, train accuracy: 0.981, test accuracy:0.9244
+34-th section, 5-th classifier, loss: 0.01691779245387079, train accuracy: 0.983, test accuracy:0.8826
+34-th section, 6-th classifier, loss: 0.019006592609352082, train accuracy: 0.981, test accuracy:0.933
+34-th section, 7-th classifier, loss: 0.01603972889700526, train accuracy: 0.984, test accuracy:0.9052
+34-th section, 8-th classifier, loss: 0.015135929581858363, train accuracy: 0.985, test accuracy:0.9228
+34-th section, 9-th classifier, loss: 0.010521884843545194, train accuracy: 0.9895, test accuracy:0.8812
+top 1 test accuracy: 0.9781
+top 2 test accuracy: 0.9905
+top 3 test accuracy: 0.9954
+35-th section, 0-th classifier, loss: 0.016017460407247653, train accuracy: 0.984, test accuracy:0.9168
+35-th section, 1-th classifier, loss: 0.018506140824201794, train accuracy: 0.981, test accuracy:0.9401
+35-th section, 2-th classifier, loss: 0.016074984702256417, train accuracy: 0.984, test accuracy:0.9134
+35-th section, 3-th classifier, loss: 0.019613941539882943, train accuracy: 0.9805, test accuracy:0.9289
+35-th section, 4-th classifier, loss: 0.01501120851523183, train accuracy: 0.985, test accuracy:0.9087
+35-th section, 5-th classifier, loss: 0.014025266111599195, train accuracy: 0.986, test accuracy:0.9122
+35-th section, 6-th classifier, loss: 0.021055027860280462, train accuracy: 0.979, test accuracy:0.9219
+35-th section, 7-th classifier, loss: 0.013514038220237126, train accuracy: 0.9865, test accuracy:0.9007
+35-th section, 8-th classifier, loss: 0.01398369892712435, train accuracy: 0.986, test accuracy:0.8815
+35-th section, 9-th classifier, loss: 0.01998627661336377, train accuracy: 0.98, test accuracy:0.9265
+top 1 test accuracy: 0.98
+top 2 test accuracy: 0.9905
+top 3 test accuracy: 0.9946
+36-th section, 0-th classifier, loss: 0.016606621906186773, train accuracy: 0.983, test accuracy:0.9326
+36-th section, 1-th classifier, loss: 0.0180435615422648, train accuracy: 0.982, test accuracy:0.9314
+36-th section, 2-th classifier, loss: 0.0160062746874637, train accuracy: 0.984, test accuracy:0.9357
+36-th section, 3-th classifier, loss: 0.0225043740337278, train accuracy: 0.9775, test accuracy:0.9362
+36-th section, 4-th classifier, loss: 0.018499631268117808, train accuracy: 0.9815, test accuracy:0.9094
+36-th section, 5-th classifier, loss: 0.011298218753491142, train accuracy: 0.988, test accuracy:0.9065
+36-th section, 6-th classifier, loss: 0.02150696575049733, train accuracy: 0.9785, test accuracy:0.94
+36-th section, 7-th classifier, loss: 0.018019907231361685, train accuracy: 0.982, test accuracy:0.898
+36-th section, 8-th classifier, loss: 0.015128266098638505, train accuracy: 0.985, test accuracy:0.94
+36-th section, 9-th classifier, loss: 0.011536705303725966, train accuracy: 0.9885, test accuracy:0.9467
+top 1 test accuracy: 0.9748
+top 2 test accuracy: 0.9881
+top 3 test accuracy: 0.9929
+37-th section, 0-th classifier, loss: 0.017828151269148294, train accuracy: 0.982, test accuracy:0.9209
+37-th section, 1-th classifier, loss: 0.013513504202004697, train accuracy: 0.9865, test accuracy:0.9392
+37-th section, 2-th classifier, loss: 0.013229115504220318, train accuracy: 0.9865, test accuracy:0.9178
+37-th section, 3-th classifier, loss: 0.016201395773165133, train accuracy: 0.9835, test accuracy:0.9287
+37-th section, 4-th classifier, loss: 0.016008552588312342, train accuracy: 0.984, test accuracy:0.9235
+37-th section, 5-th classifier, loss: 0.01350184699470742, train accuracy: 0.9865, test accuracy:0.9199
+37-th section, 6-th classifier, loss: 0.023075801664646862, train accuracy: 0.977, test accuracy:0.9284
+37-th section, 7-th classifier, loss: 0.020005409207407183, train accuracy: 0.98, test accuracy:0.9374
+37-th section, 8-th classifier, loss: 0.016491391345273314, train accuracy: 0.9835, test accuracy:0.9337
+37-th section, 9-th classifier, loss: 0.014062147394808561, train accuracy: 0.986, test accuracy:0.9171
+top 1 test accuracy: 0.9786
+top 2 test accuracy: 0.9902
+top 3 test accuracy: 0.9943
+38-th section, 0-th classifier, loss: 0.019506505441136596, train accuracy: 0.9805, test accuracy:0.9151
+38-th section, 1-th classifier, loss: 0.016516934655004662, train accuracy: 0.9835, test accuracy:0.9537
+38-th section, 2-th classifier, loss: 0.016521325719930247, train accuracy: 0.9835, test accuracy:0.9251
+38-th section, 3-th classifier, loss: 0.011450149413303735, train accuracy: 0.9885, test accuracy:0.9335
+38-th section, 4-th classifier, loss: 0.013656080896293133, train accuracy: 0.986, test accuracy:0.924
+38-th section, 5-th classifier, loss: 0.01702111156573915, train accuracy: 0.983, test accuracy:0.9385
+38-th section, 6-th classifier, loss: 0.014363502719996177, train accuracy: 0.9855, test accuracy:0.9253
+38-th section, 7-th classifier, loss: 0.022503577546514407, train accuracy: 0.9775, test accuracy:0.938
+38-th section, 8-th classifier, loss: 0.019163669479823738, train accuracy: 0.9805, test accuracy:0.9339
+38-th section, 9-th classifier, loss: 0.011352367286997832, train accuracy: 0.9885, test accuracy:0.93
+top 1 test accuracy: 0.9772
+top 2 test accuracy: 0.9907
+top 3 test accuracy: 0.9948
+39-th section, 0-th classifier, loss: 0.01963982492056812, train accuracy: 0.98, test accuracy:0.9196
+39-th section, 1-th classifier, loss: 0.01450964774052727, train accuracy: 0.9855, test accuracy:0.9501
+39-th section, 2-th classifier, loss: 0.014369656790447606, train accuracy: 0.9855, test accuracy:0.9179
+39-th section, 3-th classifier, loss: 0.01996359731969744, train accuracy: 0.98, test accuracy:0.9412
+39-th section, 4-th classifier, loss: 0.02161217389371268, train accuracy: 0.9785, test accuracy:0.9273
+39-th section, 5-th classifier, loss: 0.014640658753844037, train accuracy: 0.9855, test accuracy:0.9367
+39-th section, 6-th classifier, loss: 0.017488010310745268, train accuracy: 0.9825, test accuracy:0.9428
+39-th section, 7-th classifier, loss: 0.022021563650687314, train accuracy: 0.978, test accuracy:0.9041
+39-th section, 8-th classifier, loss: 0.015524938498948359, train accuracy: 0.9845, test accuracy:0.9156
+39-th section, 9-th classifier, loss: 0.018551480318510585, train accuracy: 0.9815, test accuracy:0.9239
+top 1 test accuracy: 0.9766
+top 2 test accuracy: 0.9909
+top 3 test accuracy: 0.9947
+40-th section, 0-th classifier, loss: 0.016955814791028388, train accuracy: 0.983, test accuracy:0.9258
+40-th section, 1-th classifier, loss: 0.02000754429363951, train accuracy: 0.98, test accuracy:0.9466
+40-th section, 2-th classifier, loss: 0.013054207072274948, train accuracy: 0.987, test accuracy:0.9311
+40-th section, 3-th classifier, loss: 0.011010291322309058, train accuracy: 0.989, test accuracy:0.9306
+40-th section, 4-th classifier, loss: 0.015092647444137583, train accuracy: 0.985, test accuracy:0.9223
+40-th section, 5-th classifier, loss: 0.009942110052055796, train accuracy: 0.99, test accuracy:0.9204
+40-th section, 6-th classifier, loss: 0.013125724438207725, train accuracy: 0.9865, test accuracy:0.9267
+40-th section, 7-th classifier, loss: 0.020523482905596212, train accuracy: 0.9795, test accuracy:0.9148
+40-th section, 8-th classifier, loss: 0.011048945037000522, train accuracy: 0.989, test accuracy:0.9312
+40-th section, 9-th classifier, loss: 0.015309596753992082, train accuracy: 0.9845, test accuracy:0.9006
+top 1 test accuracy: 0.9727
+top 2 test accuracy: 0.9881
+top 3 test accuracy: 0.9938
+41-th section, 0-th classifier, loss: 0.018033184426560184, train accuracy: 0.982, test accuracy:0.906
+41-th section, 1-th classifier, loss: 0.020071240610675885, train accuracy: 0.98, test accuracy:0.9392
+41-th section, 2-th classifier, loss: 0.013731476741745154, train accuracy: 0.986, test accuracy:0.9324
+41-th section, 3-th classifier, loss: 0.018662537836513365, train accuracy: 0.9815, test accuracy:0.9216
+41-th section, 4-th classifier, loss: 0.01850634854966995, train accuracy: 0.9815, test accuracy:0.9424
+41-th section, 5-th classifier, loss: 0.013075811730132045, train accuracy: 0.987, test accuracy:0.9087
+41-th section, 6-th classifier, loss: 0.018008762896741245, train accuracy: 0.982, test accuracy:0.9293
+41-th section, 7-th classifier, loss: 0.019341577311869515, train accuracy: 0.9805, test accuracy:0.9325
+41-th section, 8-th classifier, loss: 0.014010524048022489, train accuracy: 0.986, test accuracy:0.9155
+41-th section, 9-th classifier, loss: 0.013485644317728656, train accuracy: 0.9865, test accuracy:0.9323
+top 1 test accuracy: 0.9757
+top 2 test accuracy: 0.989
+top 3 test accuracy: 0.9936
+42-th section, 0-th classifier, loss: 0.017450305031390598, train accuracy: 0.9825, test accuracy:0.926
+42-th section, 1-th classifier, loss: 0.016513077991408862, train accuracy: 0.9835, test accuracy:0.9439
+42-th section, 2-th classifier, loss: 0.01283591784901273, train accuracy: 0.987, test accuracy:0.9467
+42-th section, 3-th classifier, loss: 0.013068527185679614, train accuracy: 0.987, test accuracy:0.9305
+42-th section, 4-th classifier, loss: 0.015505441859978873, train accuracy: 0.9845, test accuracy:0.93
+42-th section, 5-th classifier, loss: 0.011014320177052467, train accuracy: 0.989, test accuracy:0.9038
+42-th section, 6-th classifier, loss: 0.014509429838894902, train accuracy: 0.9855, test accuracy:0.9323
+42-th section, 7-th classifier, loss: 0.0195909232544891, train accuracy: 0.9805, test accuracy:0.9323
+42-th section, 8-th classifier, loss: 0.013820893201440868, train accuracy: 0.986, test accuracy:0.9368
+42-th section, 9-th classifier, loss: 0.014148285806050353, train accuracy: 0.9855, test accuracy:0.9288
+top 1 test accuracy: 0.9765
+top 2 test accuracy: 0.9905
+top 3 test accuracy: 0.9945
+43-th section, 0-th classifier, loss: 0.015555522356224174, train accuracy: 0.9845, test accuracy:0.9281
+43-th section, 1-th classifier, loss: 0.017014955129365263, train accuracy: 0.983, test accuracy:0.9538
+43-th section, 2-th classifier, loss: 0.017260095838764984, train accuracy: 0.9825, test accuracy:0.9394
+43-th section, 3-th classifier, loss: 0.021941850250317658, train accuracy: 0.978, test accuracy:0.9085
+43-th section, 4-th classifier, loss: 0.016588749050013576, train accuracy: 0.983, test accuracy:0.9148
+43-th section, 5-th classifier, loss: 0.011520495804901656, train accuracy: 0.9885, test accuracy:0.9191
+43-th section, 6-th classifier, loss: 0.01351218449825717, train accuracy: 0.9865, test accuracy:0.9396
+43-th section, 7-th classifier, loss: 0.01601613186839677, train accuracy: 0.984, test accuracy:0.906
+43-th section, 8-th classifier, loss: 0.015017881762238176, train accuracy: 0.985, test accuracy:0.9087
+43-th section, 9-th classifier, loss: 0.01350931797864905, train accuracy: 0.9865, test accuracy:0.9101
+top 1 test accuracy: 0.9765
+top 2 test accuracy: 0.9902
+top 3 test accuracy: 0.9942
+44-th section, 0-th classifier, loss: 0.014012383129576847, train accuracy: 0.986, test accuracy:0.9312
+44-th section, 1-th classifier, loss: 0.015143575896318453, train accuracy: 0.9845, test accuracy:0.9568
+44-th section, 2-th classifier, loss: 0.01649942808475271, train accuracy: 0.9835, test accuracy:0.9335
+44-th section, 3-th classifier, loss: 0.018023143062328016, train accuracy: 0.982, test accuracy:0.935
+44-th section, 4-th classifier, loss: 0.01899201129220546, train accuracy: 0.981, test accuracy:0.9403
+44-th section, 5-th classifier, loss: 0.020408542692100354, train accuracy: 0.9795, test accuracy:0.924
+44-th section, 6-th classifier, loss: 0.014009017513808885, train accuracy: 0.986, test accuracy:0.9308
+44-th section, 7-th classifier, loss: 0.019523122199720546, train accuracy: 0.9805, test accuracy:0.9136
+44-th section, 8-th classifier, loss: 0.017120096943071986, train accuracy: 0.9825, test accuracy:0.928
+44-th section, 9-th classifier, loss: 0.013534570577890464, train accuracy: 0.9865, test accuracy:0.8992
+top 1 test accuracy: 0.9769
+top 2 test accuracy: 0.9915
+top 3 test accuracy: 0.9962
+45-th section, 0-th classifier, loss: 0.018393561434498225, train accuracy: 0.9815, test accuracy:0.9156
+45-th section, 1-th classifier, loss: 0.017007372210808173, train accuracy: 0.983, test accuracy:0.9433
+45-th section, 2-th classifier, loss: 0.014633504312503192, train accuracy: 0.9855, test accuracy:0.9249
+45-th section, 3-th classifier, loss: 0.017048673961754957, train accuracy: 0.983, test accuracy:0.9376
+45-th section, 4-th classifier, loss: 0.013507976186778705, train accuracy: 0.9865, test accuracy:0.9478
+45-th section, 5-th classifier, loss: 0.01762393280766264, train accuracy: 0.982, test accuracy:0.9017
+45-th section, 6-th classifier, loss: 0.008920878162914732, train accuracy: 0.991, test accuracy:0.9378
+45-th section, 7-th classifier, loss: 0.023502811587005, train accuracy: 0.9765, test accuracy:0.939
+45-th section, 8-th classifier, loss: 0.012770403601291946, train accuracy: 0.987, test accuracy:0.9255
+45-th section, 9-th classifier, loss: 0.0140179757661449, train accuracy: 0.986, test accuracy:0.9142
+top 1 test accuracy: 0.9785
+top 2 test accuracy: 0.9911
+top 3 test accuracy: 0.9953
+46-th section, 0-th classifier, loss: 0.01663985002196921, train accuracy: 0.983, test accuracy:0.9542
+46-th section, 1-th classifier, loss: 0.018978434856180684, train accuracy: 0.981, test accuracy:0.9292
+46-th section, 2-th classifier, loss: 0.014505609809011048, train accuracy: 0.9855, test accuracy:0.9458
+46-th section, 3-th classifier, loss: 0.013009037844524755, train accuracy: 0.987, test accuracy:0.9397
+46-th section, 4-th classifier, loss: 0.01702844135763962, train accuracy: 0.983, test accuracy:0.94
+46-th section, 5-th classifier, loss: 0.01653404755289739, train accuracy: 0.9835, test accuracy:0.9325
+46-th section, 6-th classifier, loss: 0.012611976289265841, train accuracy: 0.9875, test accuracy:0.9328
+46-th section, 7-th classifier, loss: 0.015012153298514932, train accuracy: 0.985, test accuracy:0.9139
+46-th section, 8-th classifier, loss: 0.015512255746605206, train accuracy: 0.9845, test accuracy:0.9403
+46-th section, 9-th classifier, loss: 0.009108477652123383, train accuracy: 0.991, test accuracy:0.9288
+top 1 test accuracy: 0.9753
+top 2 test accuracy: 0.9888
+top 3 test accuracy: 0.9938
+47-th section, 0-th classifier, loss: 0.01250358044835025, train accuracy: 0.9875, test accuracy:0.9439
+47-th section, 1-th classifier, loss: 0.01900833026302007, train accuracy: 0.981, test accuracy:0.9397
+47-th section, 2-th classifier, loss: 0.018508313244202556, train accuracy: 0.9815, test accuracy:0.9212
+47-th section, 3-th classifier, loss: 0.015505813025611133, train accuracy: 0.9845, test accuracy:0.9494
+47-th section, 4-th classifier, loss: 0.017497648048137533, train accuracy: 0.9825, test accuracy:0.9507
+47-th section, 5-th classifier, loss: 0.016514908745685942, train accuracy: 0.9835, test accuracy:0.9161
+47-th section, 6-th classifier, loss: 0.01899385809960029, train accuracy: 0.981, test accuracy:0.9622
+47-th section, 7-th classifier, loss: 0.02067188059192995, train accuracy: 0.9795, test accuracy:0.8876
+47-th section, 8-th classifier, loss: 0.01202086649622879, train accuracy: 0.988, test accuracy:0.9259
+47-th section, 9-th classifier, loss: 0.01599857375854083, train accuracy: 0.984, test accuracy:0.9211
+top 1 test accuracy: 0.9752
+top 2 test accuracy: 0.9904
+top 3 test accuracy: 0.9944
+48-th section, 0-th classifier, loss: 0.016070699270427213, train accuracy: 0.984, test accuracy:0.9094
+48-th section, 1-th classifier, loss: 0.014518052315034766, train accuracy: 0.9855, test accuracy:0.9364
+48-th section, 2-th classifier, loss: 0.017900688826049647, train accuracy: 0.982, test accuracy:0.9138
+48-th section, 3-th classifier, loss: 0.015603436026895906, train accuracy: 0.984, test accuracy:0.9475
+48-th section, 4-th classifier, loss: 0.02500601399362307, train accuracy: 0.975, test accuracy:0.9291
+48-th section, 5-th classifier, loss: 0.01899933439657593, train accuracy: 0.981, test accuracy:0.9296
+48-th section, 6-th classifier, loss: 0.01501228413500985, train accuracy: 0.985, test accuracy:0.9489
+48-th section, 7-th classifier, loss: 0.018004496240214395, train accuracy: 0.982, test accuracy:0.9351
+48-th section, 8-th classifier, loss: 0.017587306888514734, train accuracy: 0.982, test accuracy:0.9324
+48-th section, 9-th classifier, loss: 0.01950474832520001, train accuracy: 0.9805, test accuracy:0.9265
+top 1 test accuracy: 0.9776
+top 2 test accuracy: 0.9903
+top 3 test accuracy: 0.9949
+49-th section, 0-th classifier, loss: 0.018506988023736994, train accuracy: 0.9815, test accuracy:0.9358
+49-th section, 1-th classifier, loss: 0.015006694933551444, train accuracy: 0.985, test accuracy:0.956
+49-th section, 2-th classifier, loss: 0.01700434943140226, train accuracy: 0.983, test accuracy:0.9546
+49-th section, 3-th classifier, loss: 0.014025367513505443, train accuracy: 0.986, test accuracy:0.9265
+49-th section, 4-th classifier, loss: 0.02128096184332719, train accuracy: 0.9785, test accuracy:0.9413
+49-th section, 5-th classifier, loss: 0.016507710384511712, train accuracy: 0.9835, test accuracy:0.9309
+49-th section, 6-th classifier, loss: 0.014506050607101997, train accuracy: 0.9855, test accuracy:0.9381
+49-th section, 7-th classifier, loss: 0.018450806205067807, train accuracy: 0.9815, test accuracy:0.9379
+49-th section, 8-th classifier, loss: 0.011817601120505039, train accuracy: 0.988, test accuracy:0.946
+49-th section, 9-th classifier, loss: 0.013503054946509791, train accuracy: 0.9865, test accuracy:0.931
+top 1 test accuracy: 0.9799
+top 2 test accuracy: 0.9907
+top 3 test accuracy: 0.995
+******************************
