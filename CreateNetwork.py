@@ -46,11 +46,11 @@ class CreateNetwork(object):
         else:
             lamb_weight = K.variable(self.lamb_weight)
             ref1, ref2 = self.create_reference(self.reference_output)
-            ref1 = K.variable(ref1)
-            ref2 = K.variable(ref2)
+            ref1 = K.variable(ref1.reshape((len(ref1), 1)))
+            ref2 = K.variable(ref2.reshape((len(ref2), 1)))
             loss = K.mean(K.square(y_pred - y_true), axis=-1) + \
-                   lamb_weight * K.mean(np.multiply(np.multiply(y_true, ref1.reshape((len(ref1), 1))), K.square(y_pred))) + \
-                   lamb_weight * K.mean(np.multiply(np.multiply((1 - y_true), ref2.reshape((len(ref2), 1))), K.square(1 - y_pred)))
+                   lamb_weight * K.mean(np.multiply(np.multiply(y_true, ref1), K.square(y_pred))) + \
+                   lamb_weight * K.mean(np.multiply(np.multiply((1 - y_true), ref2), K.square(1 - y_pred)))
             return loss
 
 
