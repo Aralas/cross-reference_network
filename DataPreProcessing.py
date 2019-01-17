@@ -7,7 +7,7 @@
 import tensorflow as tf
 import random
 import numpy as np
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from keras.preprocessing.image import ImageDataGenerator
 from copy import deepcopy
 
 
