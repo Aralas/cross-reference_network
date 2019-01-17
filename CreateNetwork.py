@@ -35,7 +35,8 @@ class CreateNetwork(object):
     def create_reference(self, reference_output):
         ref1 = np.array([[np.sum([self.phi_threshold(value) for value in line])] for line in reference_output])
         media_matrix = np.array([[self.phi_threshold(1-value) for value in line] for line in self.reference_output])
-        ref2 = functools.reduce(lambda x, y: x * y, media_matrix)
+        ref2 = functools.reduce(lambda x, y: x * y, media_matrix.T)
+        ref2 = ref2.T
         return ref1, ref2
 
     def cross_ref_loss(self, y_true, y_pred):
