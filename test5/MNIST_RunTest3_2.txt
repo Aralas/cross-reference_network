@@ -42,3 +42,17 @@ top 1 test accuracy before training: 0.1087
 30-th section, top 1 test accuracy: 0.7749
 31-th section, top 1 test accuracy: 0.7863
 32-th section, top 1 test accuracy: 0.8125
+33-th section, top 1 test accuracy: 0.7815
+34-th section, top 1 test accuracy: 0.8082
+35-th section, top 1 test accuracy: 0.8022
+36-th section, top 1 test accuracy: 0.7899
+37-th section, top 1 test accuracy: 0.8106
+38-th section, top 1 test accuracy: 0.7967
+39-th section, top 1 test accuracy: 0.7975
+40-th section, top 1 test accuracy: 0.8232
+41-th section, top 1 test accuracy: 0.827
+42-th section, top 1 test accuracy: 0.815
+43-th section, top 1 test accuracy: 0.8407
+44-th section, top 1 test accuracy: 0.8259
+45-th section, top 1 test accuracy: 0.789
+46-th section, top 1 test accuracy: 0.7893
