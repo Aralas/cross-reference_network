@@ -143,26 +143,26 @@ def run_cross_reference():
 
 
     for section in range(section_num):
-        record.write('*' * 20 + 'section ' + str(section) + '*' * 20)   #################
+        record.write('*' * 20 + 'section ' + str(section) + '*' * 20 + '\n')   #################
         for label in range(num_classes):
-            record.write('-' * 15 + str(label) + '-th binary classifier' + '-' * 15)   #################
+            record.write('-' * 15 + str(label) + '-th binary classifier' + '-' * 15 + '\n')   #################
             time1 = time.time()  #################
             classifier = binary_classifier_list[label]
             x, y = randomly_sample_binary_data(x_train, y_train, data_size, label)
             classifier.power_n = power_n
             classifier.lamb_weight = lambda_weight[section]
             time2 = time.time()   #################
-            record.write('generate binary training data: ' + str(time2 - time1))   #################
+            record.write('generate binary training data: ' + str(time2 - time1) + '\n')   #################
             record.flush()   #################
 
             classifier.reference_output = generate_reference_output(x, label, binary_classifier_list, num_classes)
             time3 = time.time()    #################
-            record.write('generate reference matrix with the output of other classifiers: ' + str(time3 - time2))   #################
+            record.write('generate reference matrix with the output of other classifiers: ' + str(time3 - time2) + '\n')   #################
             record.flush()   #################
 
             classifier.train_model(x, y, batch_size, epochs)
             time4 = time.time()   #################
-            record.write('train the classifier: ' + str(time4 - time3))   #################
+            record.write('train the classifier: ' + str(time4 - time3) + '\n')   #################
             record.flush()   #################
 
         time5 = time.time()   #################
@@ -171,7 +171,7 @@ def run_cross_reference():
             # record.write(str(section) + '-th section, top ' + str(top_n) + ' test accuracy: ' + str(accuracy_multi) + '\n')
             # record.flush()
         time6 = time.time()   #################
-        record.write('evaluate model: ' + str(time6 - time5))   #################
+        record.write('evaluate model: ' + str(time6 - time5) + '\n')   #################
         record.flush()   #################
     # record.write('*' * 30 + '\n')
     # record.close()
