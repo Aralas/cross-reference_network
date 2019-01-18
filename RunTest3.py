@@ -10,6 +10,7 @@ import numpy as np
 import random
 import FactoryClass
 from copy import deepcopy
+import time
 
 dataset = 'MNIST'
 model_type = 'CNN'
@@ -113,49 +114,56 @@ def run_cross_reference():
     binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
-    record_file = 'test5/' + dataset + '_RunTest3_1.txt'
-    record = open(record_file, 'a+')
-    record.write('model architecture: ' + str(model_architecture) + '\n')
-    record.write('noise level: ' + str(noise_level) + '\n')
-    record.write('augmentation: ' + str(augmentation) + '\n')
-    record.write('learning rate: ' + str(learning_rate) + '\n')
-    record.write('batch size: ' + str(batch_size) + '\n')
-    record.write('epoch: ' + str(epochs) + '\n')
-    record.write('data size: ' + str(data_size) + '\n')
-    record.write('lambda: ' + str(lambda_weight) + '\n')
-    record.write('power n:' + str(power_n) + '\n')
-    record.write('section: ' + str(section_num) + '\n')
+    # record_file = 'test5/' + dataset + '_RunTest3_1.txt'
+    # record = open(record_file, 'a+')
+    # record.write('model architecture: ' + str(model_architecture) + '\n')
+    # record.write('noise level: ' + str(noise_level) + '\n')
+    # record.write('augmentation: ' + str(augmentation) + '\n')
+    # record.write('learning rate: ' + str(learning_rate) + '\n')
+    # record.write('batch size: ' + str(batch_size) + '\n')
+    # record.write('epoch: ' + str(epochs) + '\n')
+    # record.write('data size: ' + str(data_size) + '\n')
+    # record.write('lambda: ' + str(lambda_weight) + '\n')
+    # record.write('power n:' + str(power_n) + '\n')
+    # record.write('section: ' + str(section_num) + '\n')
 
     for label in range(num_classes):
         binary_classifier_list.append(model_object.choose_network_creator())
 
     for top_n in range(1, 2):
         accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
-        record.write('top ' + str(top_n) + ' test accuracy before training: ' + str(accuracy_multi) + '\n')
-        record.flush()
+        # record.write('top ' + str(top_n) + ' test accuracy before training: ' + str(accuracy_multi) + '\n')
+        # record.flush()
 
     for section in range(section_num):
+        print('*' * 20, 'section ', section, '*' * 20)   #################
         for label in range(num_classes):
+            print('-' * 15, label, '-th binary classifier', '-' * 15)   #################
+            time1 = time.time()  #################
             classifier = binary_classifier_list[label]
             x, y = randomly_sample_binary_data(x_train, y_train, data_size, label)
             classifier.power_n = power_n
             classifier.lamb_weight = lambda_weight[section]
-            classifier.reference_output = generate_reference_output(x, label, binary_classifier_list, num_classes)
-            classifier.train_model(x, y, batch_size, epochs)
+            time2 = time.time()   #################
+            print('generate binary training data: ', time2 - time1)  ###########
 
-            # # evaluate model
-            # loss_train, accuracy_train = classifier.evaluate_model(x, y)
-            # classifier.reference_output = generate_reference_output(x_test, label, binary_classifier_list, num_classes)
-            # loss_test, accuracy_test = classifier.evaluate_model(x_test, multi_label_to_binary_label(y_test, label))
-            # record.write(str(section) + '-th section, ' + str(label) + '-th classifier, loss: ' + str(loss_train)
-            #              + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
-            # record.flush()
+            classifier.reference_output = generate_reference_output(x, label, binary_classifier_list, num_classes)
+            time3 = time.time()    #################
+            print('generate reference matrix with the output of other classifiers: ', time3 - time2)    #################
+
+            classifier.train_model(x, y, batch_size, epochs)
+            time4 = time.time()   #################
+            print('train the classifier: ', time4 - time3)   #################
+
+        time5 = time.time()   #################
         for top_n in range(1, 2):
             accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
-            record.write(str(section) + '-th section, top ' + str(top_n) + ' test accuracy: ' + str(accuracy_multi) + '\n')
-            record.flush()
-    record.write('*' * 30 + '\n')
-    record.close()
+            # record.write(str(section) + '-th section, top ' + str(top_n) + ' test accuracy: ' + str(accuracy_multi) + '\n')
+            # record.flush()
+        time6 = time.time()   #################
+        print('evaluate model: ', time6 - time5)   #################
+    # record.write('*' * 30 + '\n')
+    # record.close()
 
 
 
