@@ -13,6 +13,10 @@ from keras import backend as K
 import numpy as np
 import functools
 
+cfg = K.tf.ConfigProto()
+cfg.gpu_options.allow_growth = True
+K.set_session(K.tf.Session(config=cfg))
+
 
 class CreateNetwork(object):
 
