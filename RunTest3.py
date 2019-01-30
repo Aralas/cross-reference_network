@@ -11,6 +11,8 @@ import random
 import FactoryClass
 from copy import deepcopy
 from keras import backend as K
+import os
+import copy
 cfg = K.tf.ConfigProto()
 cfg.gpu_options.allow_growth = True
 K.set_session(K.tf.Session(config=cfg))
@@ -23,26 +25,29 @@ model_architecture = [[3, 5, 5], [6, 5, 5], [150]]
 noise_level = 0.5
 augmentation = False
 dropout = 0.5
-learning_rate = 0.001
+learning_rate = 0.0002
 batch_size = 200
-section_num = 50
+section_num = 5
 epochs = 5
 data_size = 100
 power_n = 4
 lambda_weight = np.zeros(50)
 
 
-def randomly_sample_binary_data(x, y, data_size, label):
+def randomly_sample_binary_data(x, y, y_orig, data_size, label):
     indeces_positive = list(np.where(y[:, label] == 1)[0])
     indeces_negative = set(range(len(y))) - set(indeces_positive)
     index_train = random.sample(indeces_positive, data_size) + random.sample(indeces_negative, data_size)
     x_small = x[index_train]
+    y_orig_small = y_orig[index_train]
+    y_orig_small = np.argmax(y_orig_small, axis=1)
     y_small = np.array([1] * data_size + [0] * data_size).reshape(2 * data_size, 1)
     shuffle_index = np.arange(len(x_small))
     random.shuffle(shuffle_index)
     x_small = x_small[shuffle_index]
     y_small = y_small[shuffle_index]
-    return x_small, y_small
+    y_orig_small = y_orig_small[shuffle_index]
+    return x_small, y_small, y_orig_small
 
 
 def multi_label_to_binary_label(y, label):
@@ -98,7 +103,6 @@ def generate_reference_output(x, label, binary_classifier_list, num_classes):
         classifier = binary_classifier_list[i]
         prediction = classifier.prediction(x).reshape((num_sample,))
         output[:, i] = prediction
-    np.delete(output, label, axis=1)
     return output
 
 
@@ -113,7 +117,10 @@ def run_cross_reference():
     binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
-    record_file = 'test5/' + dataset + '_RunTest3_1.txt'
+    dirs = 'record_output/'
+    if not os.path.exists(dirs):
+        os.makedirs(dirs)
+    record_file = dirs + dataset + '_RunTest3_1.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
@@ -137,10 +144,19 @@ def run_cross_reference():
     for section in range(section_num):
         for label in range(num_classes):
             classifier = binary_classifier_list[label]
-            x, y = randomly_sample_binary_data(x_train, y_train, data_size, label)
+            x, y, y_orig = randomly_sample_binary_data(x_train, y_train, y_train_orig, data_size, label)
             classifier.power_n = power_n
             classifier.lamb_weight = lambda_weight[section]
-            classifier.reference_output = generate_reference_output(x, label, binary_classifier_list, num_classes)
+
+            reference_output = generate_reference_output(x, label, binary_classifier_list, num_classes)
+            matrix = copy.deepcopy(reference_output)
+            matrix = np.c_[y_orig, y, matrix]
+            record.write('*' * 10 + 'label ' + str(label) + '*' * 10 + '\n')
+            record.write("\n".join(" ".join(map(str, a)) for a in matrix) + '\n')
+            record.flush()
+            np.delete(reference_output, label, axis=1)
+            classifier.reference_output = reference_output
+
             classifier.train_model(x, y, batch_size, epochs)
 
         for top_n in range(1, 2):
@@ -153,7 +169,7 @@ def run_cross_reference():
 
 
 
-lambda_weight = [0.5 * x for x in range(50)]
+lambda_weight = [0 * x for x in range(section_num)]
 for noise_level in [0.5, 0.8]:
     run_cross_reference()
 
