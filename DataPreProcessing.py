@@ -43,10 +43,9 @@ class LoadData(object):
 
     def data_preprocess(self):
         x_train, y_train_orig, x_test, y_test = self.load_data()
+        y_train = deepcopy(y_train_orig)
         if self.noise_level > 0:
-            y_train = self.generate_noise_labels(y_train_orig)
-        else:
-            y_train = deepcopy(y_train_orig)
+            y_train = self.generate_noise_labels(y_train)
         if self.augmentation:
             x_train, y_train = self.data_augmentation(x_train, y_train)
         return x_train, y_train, y_train_orig, x_test, y_test
