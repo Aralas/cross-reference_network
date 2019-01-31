@@ -21,34 +21,30 @@ dataset = 'MNIST'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[3, 5, 5], [6, 5, 5], [150]]
+model_architecture = [[30, 5, 5], [60, 5, 5], [1000]]
 noise_level = 0.5
 augmentation = False
 dropout = 0.5
 learning_rate = 0.0002
 batch_size = 200
-section_num = 5
+section_num = 30
 epochs = 5
 data_size = 100
 power_n = 4
 lambda_weight = np.zeros(50)
 
-
-def randomly_sample_binary_data(x, y, y_orig, data_size, label):
+def randomly_sample_binary_data(x, y, data_size, label, index_clean):
     indeces_positive = list(np.where(y[:, label] == 1)[0])
     indeces_negative = set(range(len(y))) - set(indeces_positive)
-    index_train = random.sample(indeces_positive, data_size) + random.sample(indeces_negative, data_size)
+    index_train = [int(a) for a in index_clean[label]] + random.sample(indeces_negative, data_size)
+    print(len(index_train))
     x_small = x[index_train]
-    y_orig_small = y_orig[index_train]
-    y_orig_small = np.argmax(y_orig_small, axis=1)
     y_small = np.array([1] * data_size + [0] * data_size).reshape(2 * data_size, 1)
     shuffle_index = np.arange(len(x_small))
     random.shuffle(shuffle_index)
     x_small = x_small[shuffle_index]
     y_small = y_small[shuffle_index]
-    y_orig_small = y_orig_small[shuffle_index]
-    return x_small, y_small, y_orig_small
-
+    return x_small, y_small
 
 def multi_label_to_binary_label(y, label):
     y_hat = np.zeros((len(y), 1))
@@ -117,7 +113,7 @@ def run_cross_reference():
     binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
-    dirs = 'record_output/'
+    dirs = 'test6/'
     if not os.path.exists(dirs):
         os.makedirs(dirs)
     record_file = dirs + dataset + '_RunTest3_1.txt'
@@ -141,19 +137,25 @@ def run_cross_reference():
         record.write('top ' + str(top_n) + ' test accuracy before training: ' + str(accuracy_multi) + '\n')
         record.flush()
 
+    index_clean = np.zeros((num_classes, data_size))
+    for label in range(num_classes):
+        indeces_positive = list(np.where(y_train_orig[:, label] == 1)[0])
+        index = random.sample(indeces_positive, data_size)
+        index_clean[label] = index
+
     for section in range(section_num):
         for label in range(num_classes):
             classifier = binary_classifier_list[label]
-            x, y, y_orig = randomly_sample_binary_data(x_train, y_train, y_train_orig, data_size, label)
+            x, y = randomly_sample_binary_data(x_train, y_train, data_size, label, index_clean)
             classifier.power_n = power_n
             classifier.lamb_weight = lambda_weight[section]
 
             reference_output = generate_reference_output(x, label, binary_classifier_list, num_classes)
-            matrix = copy.deepcopy(reference_output)
-            matrix = np.c_[y_orig, y, matrix]
-            record.write('*' * 10 + 'label ' + str(label) + '*' * 10 + '\n')
-            record.write("\n".join(" ".join(map(str, a)) for a in matrix) + '\n')
-            record.flush()
+            # matrix = copy.deepcopy(reference_output)
+            # matrix = np.c_[y_orig, y, matrix]
+            # record.write('*' * 10 + 'label ' + str(label) + '*' * 10 + '\n')
+            # record.write("\n".join(" ".join(map(str, a)) for a in matrix) + '\n')
+            # record.flush()
             np.delete(reference_output, label, axis=1)
             classifier.reference_output = reference_output
 
@@ -167,9 +169,7 @@ def run_cross_reference():
     record.close()
 
 
-
-
 lambda_weight = [0 * x for x in range(section_num)]
-for noise_level in [0.5, 0.8]:
+for noise_level in [0.5]:
     run_cross_reference()
 
