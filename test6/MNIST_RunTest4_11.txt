@@ -1,0 +1,37 @@
+model architecture: [[30, 5, 5], [60, 5, 5], [1000]]
+noise level: 0.5
+augmentation: False
+learning rate: 0.0002
+batch size: 200
+epoch: 5
+data size: 100
+lambda: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+power n:4
+section: 30
+top 1 test accuracy before training: 0.1136
+0-th section, top 1 test accuracy: 0.7846
+1-th section, top 1 test accuracy: 0.8299
+2-th section, top 1 test accuracy: 0.8482
+3-th section, top 1 test accuracy: 0.8595
+4-th section, top 1 test accuracy: 0.8533
+5-th section, top 1 test accuracy: 0.867
+6-th section, top 1 test accuracy: 0.8803
+7-th section, top 1 test accuracy: 0.8937
+8-th section, top 1 test accuracy: 0.9057
+9-th section, top 1 test accuracy: 0.9045
+10-th section, top 1 test accuracy: 0.9077
+11-th section, top 1 test accuracy: 0.9107
+12-th section, top 1 test accuracy: 0.9106
+13-th section, top 1 test accuracy: 0.9178
+14-th section, top 1 test accuracy: 0.9232
+15-th section, top 1 test accuracy: 0.9261
+16-th section, top 1 test accuracy: 0.9261
+17-th section, top 1 test accuracy: 0.9308
+18-th section, top 1 test accuracy: 0.934
+19-th section, top 1 test accuracy: 0.9369
+20-th section, top 1 test accuracy: 0.9343
+21-th section, top 1 test accuracy: 0.9342
+22-th section, top 1 test accuracy: 0.9347
+23-th section, top 1 test accuracy: 0.9352
+24-th section, top 1 test accuracy: 0.9335
+25-th section, top 1 test accuracy: 0.9347
