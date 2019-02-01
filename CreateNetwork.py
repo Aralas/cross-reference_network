@@ -75,7 +75,8 @@ class CreateCNN(CreateNetwork):
                 else:
                     model.add(Conv2D(layer[0], kernel_size=(layer[1], layer[2]), kernel_initializer='glorot_normal',
                                      activation='relu', padding='same'))
-                model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+                if layer_index < 3:
+                    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
             elif len(layer) == 1:
                 if len(self.architecture[layer_index - 1]) == 3:
                     model.add(Flatten())
