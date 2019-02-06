@@ -12,22 +12,24 @@ import FactoryClass
 from copy import deepcopy
 from keras import backend as K
 import os
+import gc
+from keras.models import load_model
 import copy
 cfg = K.tf.ConfigProto()
 cfg.gpu_options.allow_growth = True
 K.set_session(K.tf.Session(config=cfg))
 
-dataset = 'MNIST'
+dataset = 'CIFAR10'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[30, 5, 5], [60, 5, 5], [1000]]
+model_architecture = [[30, 5, 5], [30, 5, 5], [30, 5, 5], [60, 5, 5], [60, 5, 5], [60, 5, 5], [1000]]
 noise_level = 0.5
 augmentation = False
 dropout = 0.5
 learning_rate = 0.0002
 batch_size = 200
-section_num = 30
+section_num = 100
 epochs = 5
 data_size = 100
 power_n = 4
@@ -92,7 +94,7 @@ def update_label(x, y, y_orig, update_threshold, binary_classifier_list):
     return y_new, n1, n2
 
 
-def generate_reference_output(x, label, binary_classifier_list, num_classes):
+def generate_reference_output(x, binary_classifier_list, num_classes):
     num_sample = len(x)
     output = np.zeros((num_sample, num_classes))
     for i in range(num_classes):
@@ -113,10 +115,15 @@ def run_cross_reference():
     binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
+
+    dirs = 'model/'
+    if not os.path.exists(dirs):
+        os.makedirs(dirs)
+
     dirs = 'test6/'
     if not os.path.exists(dirs):
         os.makedirs(dirs)
-    record_file = dirs + dataset + '_RunTest3_1.txt'
+    record_file = dirs + dataset + '_RunTest4_3.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
@@ -144,18 +151,28 @@ def run_cross_reference():
         index_clean[label] = index
 
     for section in range(section_num):
+        if section > 0 and section % 10 == 0:
+            for label in range(num_classes):
+                classifier = binary_classifier_list[label]
+                classifier.model.save_weights('model/model' + str(label) + '.h5')
+            del binary_classifier_list
+            gc.collect()
+
+            binary_classifier_list = []
+            for label in range(num_classes):
+                classifier = model_object.choose_network_creator()
+                classifier.model.load_weights('model/model' + str(label) + '.h5')
+                print(classifier.prediction(x_train[0:1]))
+                binary_classifier_list.append(classifier)
+
         for label in range(num_classes):
             classifier = binary_classifier_list[label]
             x, y = randomly_sample_binary_data(x_train, y_train, data_size, label, index_clean)
             classifier.power_n = power_n
             classifier.lamb_weight = lambda_weight[section]
 
-            reference_output = generate_reference_output(x, label, binary_classifier_list, num_classes)
-            # matrix = copy.deepcopy(reference_output)
-            # matrix = np.c_[y_orig, y, matrix]
-            # record.write('*' * 10 + 'label ' + str(label) + '*' * 10 + '\n')
-            # record.write("\n".join(" ".join(map(str, a)) for a in matrix) + '\n')
-            # record.flush()
+            reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
+
             np.delete(reference_output, label, axis=1)
             classifier.reference_output = reference_output
 
@@ -169,7 +186,7 @@ def run_cross_reference():
     record.close()
 
 
-lambda_weight = [0 * x for x in range(section_num)]
+lambda_weight = np.arange(section_num) / 10
 for noise_level in [0.5]:
     run_cross_reference()
 
