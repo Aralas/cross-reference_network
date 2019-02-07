@@ -48,8 +48,8 @@ class CreateNetwork(object):
             print('There is no reference matrix!!!')
             return K.mean(K.square(y_pred - y_true), axis=-1)
         else:
-            lamb_weight1 = K.variable(self.lamb_weight / (self.num_classes * self.phi_threshold(0.8)))
-            lamb_weight2 = K.variable(self.lamb_weight / np.power(self.phi_threshold(0.8), self.num_classes))
+            lamb_weight1 = K.variable(self.lamb_weight / ((self.num_classes - 1) * self.phi_threshold(0.8)))
+            lamb_weight2 = K.variable(self.lamb_weight / np.power(self.phi_threshold(0.8), (self.num_classes - 1)))
             ref1, ref2 = self.create_reference(self.reference_output)
             ref1 = K.variable(ref1.reshape((len(ref1), 1)))
             ref2 = K.variable(ref2.reshape((len(ref2), 1)))
