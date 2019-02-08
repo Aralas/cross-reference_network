@@ -1,0 +1,110 @@
+model architecture: [[30, 5, 5], [30, 5, 5], [30, 5, 5], [60, 5, 5], [60, 5, 5], [60, 5, 5], [1000]]
+noise level: 0.8
+augmentation: False
+learning rate: 0.0002
+batch size: 200
+epoch: 5
+data size: 100
+lambda: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+power n:4
+section: 100
+top 1 test accuracy before training: 0.0993
+0-th section, top 1 test accuracy: 0.1493
+1-th section, top 1 test accuracy: 0.2299
+2-th section, top 1 test accuracy: 0.2388
+3-th section, top 1 test accuracy: 0.2659
+4-th section, top 1 test accuracy: 0.2226
+5-th section, top 1 test accuracy: 0.2629
+6-th section, top 1 test accuracy: 0.2752
+7-th section, top 1 test accuracy: 0.2815
+8-th section, top 1 test accuracy: 0.2636
+9-th section, top 1 test accuracy: 0.286
+10-th section, top 1 test accuracy: 0.3066
+11-th section, top 1 test accuracy: 0.3047
+12-th section, top 1 test accuracy: 0.2909
+13-th section, top 1 test accuracy: 0.3263
+14-th section, top 1 test accuracy: 0.2949
+15-th section, top 1 test accuracy: 0.3168
+16-th section, top 1 test accuracy: 0.3012
+17-th section, top 1 test accuracy: 0.3324
+18-th section, top 1 test accuracy: 0.345
+19-th section, top 1 test accuracy: 0.328
+20-th section, top 1 test accuracy: 0.3481
+21-th section, top 1 test accuracy: 0.336
+22-th section, top 1 test accuracy: 0.368
+23-th section, top 1 test accuracy: 0.3465
+24-th section, top 1 test accuracy: 0.3681
+25-th section, top 1 test accuracy: 0.3623
+26-th section, top 1 test accuracy: 0.3623
+27-th section, top 1 test accuracy: 0.3523
+28-th section, top 1 test accuracy: 0.3349
+29-th section, top 1 test accuracy: 0.3568
+30-th section, top 1 test accuracy: 0.3464
+31-th section, top 1 test accuracy: 0.3546
+32-th section, top 1 test accuracy: 0.3691
+33-th section, top 1 test accuracy: 0.3527
+34-th section, top 1 test accuracy: 0.3425
+35-th section, top 1 test accuracy: 0.3589
+36-th section, top 1 test accuracy: 0.3408
+37-th section, top 1 test accuracy: 0.36
+38-th section, top 1 test accuracy: 0.3554
+39-th section, top 1 test accuracy: 0.3558
+40-th section, top 1 test accuracy: 0.3649
+41-th section, top 1 test accuracy: 0.3706
+42-th section, top 1 test accuracy: 0.3577
+43-th section, top 1 test accuracy: 0.3766
+44-th section, top 1 test accuracy: 0.3759
+45-th section, top 1 test accuracy: 0.3806
+46-th section, top 1 test accuracy: 0.388
+47-th section, top 1 test accuracy: 0.3768
+48-th section, top 1 test accuracy: 0.3867
+49-th section, top 1 test accuracy: 0.3799
+50-th section, top 1 test accuracy: 0.3761
+51-th section, top 1 test accuracy: 0.3714
+52-th section, top 1 test accuracy: 0.3767
+53-th section, top 1 test accuracy: 0.3904
+54-th section, top 1 test accuracy: 0.3581
+55-th section, top 1 test accuracy: 0.3779
+56-th section, top 1 test accuracy: 0.381
+57-th section, top 1 test accuracy: 0.3662
+58-th section, top 1 test accuracy: 0.3748
+59-th section, top 1 test accuracy: 0.3837
+60-th section, top 1 test accuracy: 0.3752
+61-th section, top 1 test accuracy: 0.3713
+62-th section, top 1 test accuracy: 0.3731
+63-th section, top 1 test accuracy: 0.3789
+64-th section, top 1 test accuracy: 0.3515
+65-th section, top 1 test accuracy: 0.3748
+66-th section, top 1 test accuracy: 0.3585
+67-th section, top 1 test accuracy: 0.3791
+68-th section, top 1 test accuracy: 0.3619
+69-th section, top 1 test accuracy: 0.3741
+70-th section, top 1 test accuracy: 0.3553
+71-th section, top 1 test accuracy: 0.3603
+72-th section, top 1 test accuracy: 0.3758
+73-th section, top 1 test accuracy: 0.3656
+74-th section, top 1 test accuracy: 0.3678
+75-th section, top 1 test accuracy: 0.3406
+76-th section, top 1 test accuracy: 0.3452
+77-th section, top 1 test accuracy: 0.3589
+78-th section, top 1 test accuracy: 0.3759
+79-th section, top 1 test accuracy: 0.3434
+80-th section, top 1 test accuracy: 0.3643
+81-th section, top 1 test accuracy: 0.3499
+82-th section, top 1 test accuracy: 0.3459
+83-th section, top 1 test accuracy: 0.3726
+84-th section, top 1 test accuracy: 0.3528
+85-th section, top 1 test accuracy: 0.3704
+86-th section, top 1 test accuracy: 0.3704
+87-th section, top 1 test accuracy: 0.3703
+88-th section, top 1 test accuracy: 0.3297
+89-th section, top 1 test accuracy: 0.3464
+90-th section, top 1 test accuracy: 0.3475
+91-th section, top 1 test accuracy: 0.3355
+92-th section, top 1 test accuracy: 0.3395
+93-th section, top 1 test accuracy: 0.3524
+94-th section, top 1 test accuracy: 0.3699
+95-th section, top 1 test accuracy: 0.3565
+96-th section, top 1 test accuracy: 0.364
+97-th section, top 1 test accuracy: 0.343
+98-th section, top 1 test accuracy: 0.3724
