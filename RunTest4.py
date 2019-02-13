@@ -23,13 +23,13 @@ dataset = 'CIFAR10'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[30, 5, 5], [30, 5, 5], [30, 5, 5], [60, 5, 5], [60, 5, 5], [60, 5, 5], [1000]]
+model_architecture = [[30, 5, 5], [30, 5, 5], [30, 5, 5], [1000]]
 noise_level = 0.5
 augmentation = False
 dropout = 0.5
 learning_rate = 0.0002
 batch_size = 200
-section_num = 100
+section_num = 30
 epochs = 5
 data_size = 100
 power_n = 4
@@ -116,14 +116,15 @@ def run_cross_reference():
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
 
-    dirs = 'model/'
+    dirs = 'test8/'
     if not os.path.exists(dirs):
         os.makedirs(dirs)
 
-    dirs = 'test6/'
-    if not os.path.exists(dirs):
-        os.makedirs(dirs)
-    record_file = dirs + dataset + '_RunTest4_3.txt'
+    model_dirs = dirs + 'model/' + dataset + '_RunTest4_1/'
+    if not os.path.exists(model_dirs):
+        os.makedirs(model_dirs)
+
+    record_file = dirs + dataset + '_RunTest4_1.txt'
     record = open(record_file, 'a+')
     record.write('model architecture: ' + str(model_architecture) + '\n')
     record.write('noise level: ' + str(noise_level) + '\n')
@@ -154,14 +155,14 @@ def run_cross_reference():
         if section > 0 and section % 10 == 0:
             for label in range(num_classes):
                 classifier = binary_classifier_list[label]
-                classifier.model.save_weights('model/model' + str(label) + '.h5')
+                classifier.model.save_weights(model_dirs + 'model' + str(label) + '.h5')
             del binary_classifier_list
             gc.collect()
 
             binary_classifier_list = []
             for label in range(num_classes):
                 classifier = model_object.choose_network_creator()
-                classifier.model.load_weights('model/model' + str(label) + '.h5')
+                classifier.model.load_weights(model_dirs + 'model' + str(label) + '.h5')
                 print(classifier.prediction(x_train[0:1]))
                 binary_classifier_list.append(classifier)
 
@@ -186,7 +187,7 @@ def run_cross_reference():
     record.close()
 
 
-lambda_weight = np.arange(section_num) / 10
-for noise_level in [0.5]:
+lambda_weight = [0] * section_num
+for noise_level in [0.8]:
     run_cross_reference()
 

@@ -38,7 +38,7 @@ class CreateNetwork(object):
 
     def create_reference(self, reference_output):
         ref1 = np.array([[np.sum([self.phi_threshold(value) for value in line])] for line in reference_output])
-        media_matrix = np.array([[self.phi_threshold(1-value) for value in line] for line in self.reference_output])
+        media_matrix = np.array([[self.phi_threshold(1-value) for value in line] for line in reference_output])
         ref2 = functools.reduce(lambda x, y: x * y, media_matrix.T)
         ref2 = ref2.T
         return ref1, ref2
@@ -53,9 +53,10 @@ class CreateNetwork(object):
             ref1, ref2 = self.create_reference(self.reference_output)
             ref1 = K.variable(ref1.reshape((len(ref1), 1)))
             ref2 = K.variable(ref2.reshape((len(ref2), 1)))
-            loss = K.mean(K.square(y_pred - y_true), axis=-1) + \
-                   lamb_weight1 * K.mean(np.multiply(np.multiply(y_true, ref1), K.square(y_pred))) + \
-                   lamb_weight2 * K.mean(np.multiply(np.multiply((1 - y_true), ref2), K.square(1 - y_pred)))
+            loss0 = K.mean(K.square(y_pred - y_true), axis=-1)
+            loss1 = lamb_weight1 * K.mean(np.multiply(np.multiply(y_true, ref1), K.square(y_pred)))
+            loss2 = lamb_weight2 * K.mean(np.multiply(np.multiply((1 - y_true), ref2), K.square(1 - y_pred)))
+            loss = loss0 + loss2
             return loss
 
 
