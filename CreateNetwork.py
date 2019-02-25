@@ -29,10 +29,11 @@ class CreateNetwork(object):
         self.reference_output = None
         self.lamb_weight = 0
         self.power_n = 2
+        self.threshold = 0.3
 
     def phi_threshold(self, x):
-        if x >= 0.5:
-            return np.power(x-0.5, self.power_n)
+        if x >= self.threshold:
+            return np.power(x-self.threshold, self.power_n)
         else:
             return 0
 
@@ -44,18 +45,20 @@ class CreateNetwork(object):
         return ref1, ref2
 
     def cross_ref_loss(self, y_true, y_pred):
+        tf.reshape(y_true, [-1, 1])
+        tf.reshape(y_pred, [-1, 1])
         if self.reference_output is None:
             print('There is no reference matrix!!!')
-            return K.mean(K.square(y_pred - y_true), axis=-1)
+            return K.mean(K.square(y_pred - y_true))
         else:
-            lamb_weight1 = K.variable(self.lamb_weight / ((self.num_classes - 1) * self.phi_threshold(0.8)))
-            lamb_weight2 = K.variable(self.lamb_weight / np.power(self.phi_threshold(0.8), (self.num_classes - 1)))
+            lamb_weight1 = K.variable(self.lamb_weight / ((self.num_classes - 1) * self.phi_threshold(0.7)))
+            lamb_weight2 = K.variable(self.lamb_weight / np.power(self.phi_threshold(0.7), (self.num_classes - 1)))
             ref1, ref2 = self.create_reference(self.reference_output)
             ref1 = K.variable(ref1.reshape((len(ref1), 1)))
             ref2 = K.variable(ref2.reshape((len(ref2), 1)))
-            loss0 = K.mean(K.square(y_pred - y_true), axis=-1)
+            loss0 = K.mean(K.square(y_pred - y_true))
             loss1 = lamb_weight1 * K.mean(np.multiply(np.multiply(y_true, ref1), K.square(y_pred)))
-            loss2 = lamb_weight2 * K.mean(np.multiply(np.multiply((1 - y_true), ref2), K.square(1 - y_pred)))
+            loss2 = lamb_weight2 * K.mean(np.multiply(np.multiply((1 - y_true), ref2), tf.reshape(K.square(1 - y_pred), [-1, 1])))
             loss = loss0 + loss2
             return loss
 
