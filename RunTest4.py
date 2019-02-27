@@ -19,7 +19,7 @@ cfg = K.tf.ConfigProto()
 cfg.gpu_options.allow_growth = True
 K.set_session(K.tf.Session(config=cfg))
 
-dataset = 'CIFAR10'
+dataset = 'Fruit360'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
@@ -116,7 +116,7 @@ def run_cross_reference():
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
 
-    dirs = 'test8/'
+    dirs = 'test9/'
     if not os.path.exists(dirs):
         os.makedirs(dirs)
 

@@ -5,10 +5,12 @@
 @time:2018/11/2722:29
 """
 import tensorflow as tf
-import random
+import os
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 from copy import deepcopy
+import cv2
+from keras.utils import np_utils
 
 
 class LoadData(object):
@@ -94,6 +96,46 @@ class CIFAR10(LoadData):
         # transform labels to one-hot vectors
         y_train = tf.contrib.keras.utils.to_categorical(y_train, self.num_classes)
         y_test = tf.contrib.keras.utils.to_categorical(y_test, self.num_classes)
+        return x_train, y_train, x_test, y_test
+
+
+class Fruit360(LoadData):
+
+    def __init__(self, seed, noise_level, augmentation):
+        LoadData.__init__(self, seed, noise_level, augmentation)
+        self.num_classes = 95
+        self.img_rows, self.img_cols = 64, 64
+        self.input_size = (64, 64, 3)
+        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test = self.data_preprocess()
+
+    def load_images(self, path):
+        img_data = []
+        labels = []
+        idx_to_label = []
+        i = -1
+        for fruit in os.listdir(path):
+            if not fruit.startswith('.'):
+                fruit_path = os.path.join(path, fruit)
+                labels.append(fruit)
+                i = i + 1
+                for img in os.listdir(fruit_path):
+                    img_path = os.path.join(fruit_path, img)
+                    image = cv2.imread(img_path)
+                    image = cv2.resize(image, (64, 64))
+                    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                    img_data.append(image)
+                    idx_to_label.append(i)
+        return np.array(img_data), np.array(idx_to_label), labels
+
+    def load_data(self):
+        # load data
+        trn_data_path = 'fruits-360/Training'
+        val_data_path = 'fruits-360/Test'
+        x_train, y_train, label_data = self.load_images(trn_data_path)
+        x_test, y_test, label_data_garbage = self.load_images(val_data_path)
+        y_train = np_utils.to_categorical(y_train, self.num_classes)
+        y_test = np_utils.to_categorical(y_test, self.num_classes)
+        x_train, x_test = x_train / 255.0, x_test / 255.0
         return x_train, y_train, x_test, y_test
 
 

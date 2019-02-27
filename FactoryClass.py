@@ -43,6 +43,8 @@ class ChooseDataset(object):
             return DataPreProcessing.MNIST(self.seed, self.noise_level, self.augmentation)
         elif self.dataset == 'CIFAR10':
             return DataPreProcessing.CIFAR10(self.seed, self.noise_level, self.augmentation)
+        elif self.dataset == 'Fruit360':
+            return DataPreProcessing.Fruit360(self.seed, self.noise_level, self.augmentation)
         elif self.dataset == 'NORB':
             return DataPreProcessing.NORB(self.seed, self.noise_level, self.augmentation)
         elif self.dataset == 'NewsGroup':
