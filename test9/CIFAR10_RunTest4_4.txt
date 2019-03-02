@@ -1,0 +1,42 @@
+model architecture: [[30, 5, 5], [30, 5, 5], [30, 5, 5], [1000]]
+noise level: 0.8
+augmentation: False
+learning rate: 0.0002
+batch size: 200
+epoch: 5
+data size: 100
+lambda: [0.0, 0.040000000000000008, 0.16000000000000003, 0.35999999999999999, 0.64000000000000012, 1.0, 1.4399999999999999, 1.9599999999999997, 2.5600000000000005, 3.2400000000000002, 4.0, 4.8400000000000007, 5.7599999999999998, 6.7600000000000007, 7.839999999999999, 9.0, 10.240000000000002, 11.559999999999999, 12.960000000000001, 14.44, 16.0, 17.640000000000001, 19.360000000000003, 21.159999999999997, 23.039999999999999, 25.0, 27.040000000000003, 29.160000000000004, 31.359999999999996, 33.640000000000001]
+power n:4
+section: 30
+top 1 test accuracy before training: 0.1
+0-th section, top 1 test accuracy: 0.1954
+1-th section, top 1 test accuracy: 0.2755
+2-th section, top 1 test accuracy: 0.2918
+3-th section, top 1 test accuracy: 0.3037
+4-th section, top 1 test accuracy: 0.305
+5-th section, top 1 test accuracy: 0.3004
+6-th section, top 1 test accuracy: 0.3046
+7-th section, top 1 test accuracy: 0.2931
+8-th section, top 1 test accuracy: 0.3098
+9-th section, top 1 test accuracy: 0.3161
+10-th section, top 1 test accuracy: 0.3015
+11-th section, top 1 test accuracy: 0.3064
+12-th section, top 1 test accuracy: 0.3069
+13-th section, top 1 test accuracy: 0.3104
+14-th section, top 1 test accuracy: 0.3026
+15-th section, top 1 test accuracy: 0.3124
+16-th section, top 1 test accuracy: 0.321
+17-th section, top 1 test accuracy: 0.3276
+18-th section, top 1 test accuracy: 0.3351
+19-th section, top 1 test accuracy: 0.316
+20-th section, top 1 test accuracy: 0.3334
+21-th section, top 1 test accuracy: 0.3437
+22-th section, top 1 test accuracy: 0.3359
+23-th section, top 1 test accuracy: 0.3369
+24-th section, top 1 test accuracy: 0.3433
+25-th section, top 1 test accuracy: 0.3528
+26-th section, top 1 test accuracy: 0.343
+27-th section, top 1 test accuracy: 0.3504
+28-th section, top 1 test accuracy: 0.3475
+29-th section, top 1 test accuracy: 0.3659
+******************************

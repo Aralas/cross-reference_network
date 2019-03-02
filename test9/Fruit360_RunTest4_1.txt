@@ -1,0 +1,18 @@
+model architecture: [[30, 5, 5], [30, 5, 5], [30, 5, 5], [1000]]
+noise level: 0.8
+augmentation: False
+learning rate: 0.0002
+batch size: 200
+epoch: 5
+data size: 100
+lambda: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+power n:4
+section: 30
+top 1 test accuracy before training: 0.0104135
+0-th section, top 1 test accuracy: 0.401072
+1-th section, top 1 test accuracy: 0.425553
+2-th section, top 1 test accuracy: 0.371476
+3-th section, top 1 test accuracy: 0.359113
+4-th section, top 1 test accuracy: 0.458255
+5-th section, top 1 test accuracy: 0.468912
+6-th section, top 1 test accuracy: 0.533341
