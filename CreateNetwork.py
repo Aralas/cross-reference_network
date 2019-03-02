@@ -30,6 +30,7 @@ class CreateNetwork(object):
         self.lamb_weight = 0
         self.power_n = 2
         self.threshold = 0.3
+        self.noisy_positive_data = False
 
     def phi_threshold(self, x):
         if x >= self.threshold:
@@ -59,7 +60,10 @@ class CreateNetwork(object):
             loss0 = K.mean(K.square(y_pred - y_true))
             loss1 = lamb_weight1 * K.mean(np.multiply(np.multiply(y_true, ref1), K.square(y_pred)))
             loss2 = lamb_weight2 * K.mean(np.multiply(np.multiply((1 - y_true), ref2), tf.reshape(K.square(1 - y_pred), [-1, 1])))
-            loss = loss0 + loss2
+            if self.noisy_positive_data:
+                loss = loss0 + loss1 + loss2
+            else:
+                loss = loss0 + loss2
             return loss
 
 
