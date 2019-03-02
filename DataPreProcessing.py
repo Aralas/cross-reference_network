@@ -35,22 +35,25 @@ class LoadData(object):
     def generate_noise_labels(self, y_train):
         num_noise = int(self.noise_level * y_train.shape[0])
         noise_index = np.random.choice(y_train.shape[0], num_noise, replace=False)
+        clean_index = list(set(range(y_train.shape[0])) - set(noise_index))
         label_slice = np.argmax(y_train[noise_index], axis=1)
         new_label = np.random.randint(low=0, high=self.num_classes, size=num_noise)
         while sum(label_slice == new_label) > 0:
             n = sum(label_slice == new_label)
             new_label[label_slice == new_label] = np.random.randint(low=0, high=self.num_classes, size=n)
         y_train[noise_index] = tf.contrib.keras.utils.to_categorical(new_label, self.num_classes)
-        return y_train
+        return y_train, clean_index
 
     def data_preprocess(self):
         x_train, y_train_orig, x_test, y_test = self.load_data()
         y_train = deepcopy(y_train_orig)
         if self.noise_level > 0:
-            y_train = self.generate_noise_labels(y_train)
+            y_train, clean_index = self.generate_noise_labels(y_train)
+        else:
+            clean_index = np.arange(y_train.shape[0])
         if self.augmentation:
             x_train, y_train = self.data_augmentation(x_train, y_train)
-        return x_train, y_train, y_train_orig, x_test, y_test
+        return x_train, y_train, y_train_orig, x_test, y_test, clean_index
 
 
 class MNIST(LoadData):
@@ -60,7 +63,7 @@ class MNIST(LoadData):
         self.num_classes = 10
         self.img_rows, self.img_cols = 28, 28
         self.input_size = (28, 28, 1)
-        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test = self.data_preprocess()
+        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test, self.clean_index = self.data_preprocess()
 
     def load_data(self):
         # load data
@@ -83,7 +86,7 @@ class CIFAR10(LoadData):
         self.num_classes = 10
         self.img_rows, self.img_cols = 32, 32
         self.input_size = (32, 32, 3)
-        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test = self.data_preprocess()
+        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test, self.clean_index = self.data_preprocess()
 
     def load_data(self):
         # load data
@@ -106,7 +109,7 @@ class Fruit360(LoadData):
         self.num_classes = 95
         self.img_rows, self.img_cols = 64, 64
         self.input_size = (64, 64, 3)
-        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test = self.data_preprocess()
+        self.x_train, self.y_train, self.y_train_orig, self.x_test, self.y_test, self.clean_index = self.data_preprocess()
 
     def load_images(self, path):
         img_data = []
