@@ -144,10 +144,10 @@ def run_cross_reference():
     for label in range(num_classes):
         binary_classifier_list.append(model_object.choose_network_creator())
 
-    for top_n in range(1, 2):
-        accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
-        record.write('top ' + str(top_n) + ' test accuracy before training: ' + str(accuracy_multi) + '\n')
-        record.flush()
+    # for top_n in range(1, 2):
+    #     accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
+    #     record.write('top ' + str(top_n) + ' test accuracy before training: ' + str(accuracy_multi) + '\n')
+    #     record.flush()
 
     clean_x = x_train[clean_index]
     clean_y = y_train[clean_index]
@@ -156,6 +156,7 @@ def run_cross_reference():
         indeces_positive = list(np.where(clean_y[:, label] == 1)[0])
         index = random.sample(indeces_positive, data_size)
         index_clean_matrix[label] = index
+    index_clean_matrix = index_clean_matrix.astype(int)
 
     for section in range(section_num):
         if section > 0 and section % 10 == 0:
@@ -175,6 +176,7 @@ def run_cross_reference():
                 binary_classifier_list.append(classifier)
 
         for label in range(num_classes):
+            print('section: ', section, 'label: ', label)
             classifier = binary_classifier_list[label]
             # x, y = randomly_sample_binary_data(x_train, y_train, data_size, label, index_clean_matrix)
             indeces_negative = list(np.where(y_train[:, label] != 1)[0])
@@ -193,11 +195,12 @@ def run_cross_reference():
 
             np.delete(reference_output, label, axis=1)
             for batch in range(4):
-                small_batch_size = len(x)/4
-                small_data_index = np.arange(small_batch_size * batch, small_batch_size * (batch + 1))
-                classifier.reference_output = reference_output[small_data_index]
+                small_batch_size = len(x)//4
+                small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
+                # small_data_index = small_data_index.astype(int)
+                classifier.reference_output = reference_output[small_data_index, :]
 
-                classifier.train_model(x[small_data_index], y[small_data_index], small_batch_size, epochs)
+                classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, epochs)
 
         for top_n in range(1, 2):
             accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, top_n)
