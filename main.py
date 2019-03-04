@@ -12,7 +12,7 @@ import numpy as np
 file_index = 1
 lambda_weight = np.zeros(60)
 
-RunTest6.initialization(1, lambda_weight)
+RunTest6.initialization(file_index, lambda_weight)
 
 info = psutil.virtual_memory()
 print(u'内存使用：', psutil.Process(os.getpid()).memory_info().rss)
