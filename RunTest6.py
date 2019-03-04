@@ -105,7 +105,6 @@ def initialization(file_index, lambda_weight):
     num_classes = data_object.num_classes
     input_size = data_object.input_size
 
-    binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
 
@@ -130,8 +129,11 @@ def initialization(file_index, lambda_weight):
     record.write('power n:' + str(power_n) + '\n')
     record.write('section: ' + str(section_num) + '\n')
 
+    binary_classifier_list = []
     for label in range(num_classes):
-        binary_classifier_list.append(model_object.choose_network_creator())
+        classifier = model_object.choose_network_creator()
+        classifier.model.save_weights(model_dirs + 'model' + str(label) + '.h5')
+        binary_classifier_list.append(classifier)
 
     accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
     record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
@@ -148,7 +150,6 @@ def run_cross_reference(section, file_index, lambda_weight):
     num_classes = data_object.num_classes
     input_size = data_object.input_size
 
-    binary_classifier_list = []
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
 
@@ -157,6 +158,7 @@ def run_cross_reference(section, file_index, lambda_weight):
     record_file = dirs + dataset + '_RunTest6_' + str(file_index) + '.txt'
     record = open(record_file, 'a+')
 
+    binary_classifier_list = []
     for label in range(num_classes):
         classifier = model_object.choose_network_creator()
         classifier.model.load_weights(model_dirs + 'model' + str(label) + '.h5')
