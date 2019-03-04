@@ -9,7 +9,7 @@ import os
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 from copy import deepcopy
-import cv2
+# import cv2
 from keras.utils import np_utils
 
 
