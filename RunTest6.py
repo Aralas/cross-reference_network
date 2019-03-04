@@ -136,50 +136,10 @@ def initialization(file_index, lambda_weight):
     accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
     record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
     record.flush()
-
-    set_random_seed(seed)
-    clean_x = x_train[clean_index]
-    clean_y = y_train[clean_index]
-    index_clean_matrix = np.zeros((num_classes, data_size))
-    for label in range(num_classes):
-        indeces_positive = list(np.where(clean_y[:, label] == 1)[0])
-        index = random.sample(indeces_positive, data_size)
-        index_clean_matrix[label] = index
-    index_clean_matrix = index_clean_matrix.astype(int)
-
-    for section in range(5):
-        for label in range(num_classes):
-            print('section: ', section, 'label: ', label)
-            classifier = binary_classifier_list[label]
-            indeces_negative = list(np.where(y_train[:, label] != 1)[0])
-            index_train = random.sample(indeces_negative, data_size)
-            x = np.append(clean_x[index_clean_matrix[label]], x_train[index_train], axis=0)
-            y = np.array([1] * data_size + [0] * data_size).reshape(2 * data_size, 1)
-            for epoch in range(epochs):
-                shuffle_index = np.arange(len(x))
-                random.shuffle(shuffle_index)
-                x = x[shuffle_index]
-                y = y[shuffle_index]
-
-                classifier.power_n = power_n
-                classifier.lamb_weight = lambda_weight[section]
-
-                reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
-
-                np.delete(reference_output, label, axis=1)
-                for batch in range(4):
-                    small_batch_size = len(x)//4
-                    small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
-                    classifier.reference_output = reference_output[small_data_index, :]
-                    classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
-
-        accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
-        record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
-        record.flush()
     record.close()
 
 
-def run_cross_reference(start_section, end_section, file_index, lambda_weight):
+def run_cross_reference(section, file_index, lambda_weight):
     data_chooser = FactoryClass.ChooseDataset(dataset, seed, noise_level, augmentation)
     data_object = data_chooser.data_object
     x_train, y_train, y_train_orig, x_test, y_test, clean_index = data_object.x_train, data_object.y_train, \
@@ -213,35 +173,35 @@ def run_cross_reference(start_section, end_section, file_index, lambda_weight):
         index_clean_matrix[label] = index
     index_clean_matrix = index_clean_matrix.astype(int)
 
-    for section in range(start_section, end_section):
-        for label in range(num_classes):
-            print('section: ', section, 'label: ', label)
-            classifier = binary_classifier_list[label]
-            indeces_negative = list(np.where(y_train[:, label] != 1)[0])
-            index_train = random.sample(indeces_negative, data_size)
-            x = np.append(clean_x[index_clean_matrix[label]], x_train[index_train], axis=0)
-            y = np.array([1] * data_size + [0] * data_size).reshape(2 * data_size, 1)
-            for epoch in range(epochs):
-                shuffle_index = np.arange(len(x))
-                random.shuffle(shuffle_index)
-                x = x[shuffle_index]
-                y = y[shuffle_index]
+    set_random_seed(section)
+    for label in range(num_classes):
+        print('section: ', section, 'label: ', label)
+        classifier = binary_classifier_list[label]
+        indeces_negative = list(np.where(y_train[:, label] != 1)[0])
+        index_train = random.sample(indeces_negative, data_size)
+        x = np.append(clean_x[index_clean_matrix[label]], x_train[index_train], axis=0)
+        y = np.array([1] * data_size + [0] * data_size).reshape(2 * data_size, 1)
+        for epoch in range(epochs):
+            shuffle_index = np.arange(len(x))
+            random.shuffle(shuffle_index)
+            x = x[shuffle_index]
+            y = y[shuffle_index]
 
-                classifier.power_n = power_n
-                classifier.lamb_weight = lambda_weight[section]
+            classifier.power_n = power_n
+            classifier.lamb_weight = lambda_weight[section]
 
-                reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
+            reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
 
-                np.delete(reference_output, label, axis=1)
-                for batch in range(4):
-                    small_batch_size = len(x)//4
-                    small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
-                    classifier.reference_output = reference_output[small_data_index, :]
-                    classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
+            np.delete(reference_output, label, axis=1)
+            for batch in range(4):
+                small_batch_size = len(x)//4
+                small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
+                classifier.reference_output = reference_output[small_data_index, :]
+                classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
 
-        accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
-        record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
-        record.flush()
+    accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
+    record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
+    record.flush()
     record.close()
 
 
