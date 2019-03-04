@@ -131,17 +131,14 @@ def initialization(file_index, lambda_weight):
 
     binary_classifier_list = []
     for label in range(num_classes):
-        classifier = model_object.choose_network_creator()
+        classifier = binary_classifier_list[label]
+        classifier.model.save_weights(model_dirs + 'model' + str(label) + '.h5')
         binary_classifier_list.append(classifier)
 
     accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
     record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
     record.flush()
     record.close()
-
-    for label in range(num_classes):
-        classifier = binary_classifier_list[label]
-        classifier.model.save_weights(model_dirs + 'model' + str(label) + '.h5')
 
 
 def run_cross_reference(section, file_index, lambda_weight):
