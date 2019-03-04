@@ -24,10 +24,10 @@ for section in range(60):
     RunTest6.run_cross_reference(section, file_index, lambda_weight)
 
     info = psutil.virtual_memory()
-    print(u'内存使用：', psutil.Process(os.getpid()).memory_info().rss)
-    print(u'总内存：', info.total)
-    print(u'内存占比：', info.percent)
-    print(u'cpu个数：', psutil.cpu_count())
+    print('Memory used: ', psutil.Process(os.getpid()).memory_info().rss)
+    print('Total memory: ', info.total)
+    print('Memory percent: ', info.percent)
+    print('cpu: ', psutil.cpu_count())
 
     for key in list(globals().keys()):
         if not key.startswith("__"):
@@ -38,8 +38,8 @@ for section in range(60):
     import os
 
     info = psutil.virtual_memory()
-    print(u'清除所有变量')
-    print(u'内存使用：', psutil.Process(os.getpid()).memory_info().rss)
-    print(u'总内存：', info.total)
-    print(u'内存占比：', info.percent)
-    print(u'cpu个数：', psutil.cpu_count())
+    print('Clear all the variables')
+    print('Memory used: ', psutil.Process(os.getpid()).memory_info().rss)
+    print('Total memory: ', info.total)
+    print('Memory percent: ', info.percent)
+    print('cpu: ', psutil.cpu_count())
