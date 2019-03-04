@@ -12,10 +12,20 @@ from keras.optimizers import Adam
 from keras import backend as K
 import numpy as np
 import functools
+import os
 
-cfg = K.tf.ConfigProto()
-cfg.gpu_options.allow_growth = True
-K.set_session(K.tf.Session(config=cfg))
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "4"
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True   
+sess = tf.Session(config=config)
+
+K.set_session(sess)
+
+# cfg = K.tf.ConfigProto()
+# cfg.gpu_options.allow_growth = True
+# K.set_session(K.tf.Session(config=cfg))
 
 
 class CreateNetwork(object):
