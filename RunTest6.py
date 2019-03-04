@@ -33,7 +33,6 @@ section_num = 60
 epochs = 5
 data_size = 100
 power_n = 4
-lambda_weight = np.zeros(60)
 
 
 def multi_label_to_binary_label(y, label):
@@ -97,7 +96,7 @@ def set_random_seed(seed):
     np.random.seed(seed)
 
 
-def initialization(file_index):
+def initialization(file_index, lambda_weight):
     data_chooser = FactoryClass.ChooseDataset(dataset, seed, noise_level, augmentation)
     data_object = data_chooser.data_object
     x_train, y_train, y_train_orig, x_test, y_test, clean_index = data_object.x_train, data_object.y_train, \
@@ -180,7 +179,7 @@ def initialization(file_index):
     record.close()
 
 
-def run_cross_reference(start_section, end_section, file_index):
+def run_cross_reference(start_section, end_section, file_index, lambda_weight):
     data_chooser = FactoryClass.ChooseDataset(dataset, seed, noise_level, augmentation)
     data_object = data_chooser.data_object
     x_train, y_train, y_train_orig, x_test, y_test, clean_index = data_object.x_train, data_object.y_train, \

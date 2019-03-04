@@ -7,10 +7,12 @@
 import psutil
 import os
 import RunTest6
+import numpy as np
 
 file_index = 1
+lambda_weight = np.zeros(60)
 
-RunTest6.initialization(1)
+RunTest6.initialization(1, lambda_weight)
 
 info = psutil.virtual_memory()
 print(u'内存使用：', psutil.Process(os.getpid()).memory_info().rss)
@@ -34,11 +36,14 @@ print(u'cpu个数：', psutil.cpu_count())
 
 for block in range(11):
     import RunTest6
+    import numpy as np
+
     file_index = 1
+    lambda_weight = np.zeros(60)
 
     start_section = 5 * (block + 1)
     end_section = 5 * (block + 2)
-    RunTest6.run_cross_reference(start_section, end_section, file_index)
+    RunTest6.run_cross_reference(start_section, end_section, file_index, lambda_weight)
 
     info = psutil.virtual_memory()
     print(u'内存使用：', psutil.Process(os.getpid()).memory_info().rss)
