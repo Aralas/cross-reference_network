@@ -32,7 +32,7 @@ print(u'总内存：', info.total)
 print(u'内存占比：', info.percent)
 print(u'cpu个数：', psutil.cpu_count())
 
-for block in range(5):
+for block in range(11):
     import RunTest6
     file_index = 1
 

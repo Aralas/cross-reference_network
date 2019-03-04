@@ -33,7 +33,7 @@ section_num = 60
 epochs = 5
 data_size = 100
 power_n = 4
-lambda_weight = np.zeros(50)
+lambda_weight = np.zeros(60)
 
 
 def multi_label_to_binary_label(y, label):
@@ -172,7 +172,7 @@ def initialization(file_index):
                     small_batch_size = len(x)//4
                     small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
                     classifier.reference_output = reference_output[small_data_index, :]
-                    classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, epochs)
+                    classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
 
         accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
         record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
@@ -238,7 +238,7 @@ def run_cross_reference(start_section, end_section, file_index):
                     small_batch_size = len(x)//4
                     small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
                     classifier.reference_output = reference_output[small_data_index, :]
-                    classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, epochs)
+                    classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
 
         accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
         record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
