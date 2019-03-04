@@ -157,7 +157,7 @@ def run_cross_reference(section, file_index, lambda_weight):
                                                      2)
 
     dirs = 'test1/'
-    model_dirs = dirs + 'model/' + dataset + '_RunTest5_' + str(file_index) + '/'
+    model_dirs = dirs + 'model/' + dataset + '_RunTest6_' + str(file_index) + '/'
     record_file = dirs + dataset + '_RunTest6_' + str(file_index) + '.txt'
     record = open(record_file, 'a+')
 
