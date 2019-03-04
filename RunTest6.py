@@ -205,6 +205,6 @@ def run_cross_reference(section, file_index, lambda_weight):
     record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
     record.flush()
     record.close()
-
+    K.clear_session()
 
 
