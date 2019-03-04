@@ -131,7 +131,7 @@ def initialization(file_index, lambda_weight):
 
     binary_classifier_list = []
     for label in range(num_classes):
-        classifier = binary_classifier_list[label]
+        classifier = model_object.choose_network_creator()
         classifier.model.save_weights(model_dirs + 'model' + str(label) + '.h5')
         binary_classifier_list.append(classifier)
 
