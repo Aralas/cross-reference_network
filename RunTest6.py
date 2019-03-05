@@ -183,26 +183,36 @@ def run_cross_reference(section, file_index, lambda_weight):
         index_train = random.sample(indeces_negative, data_size)
         x = np.append(clean_x[index_clean_matrix[label]], x_train[index_train], axis=0)
         y = np.array([1] * data_size + [0] * data_size).reshape(2 * data_size, 1)
-        for epoch in range(epochs):
-            shuffle_index = np.arange(len(x))
-            random.shuffle(shuffle_index)
-            x = x[shuffle_index]
-            y = y[shuffle_index]
+        classifier.power_n = power_n
+        classifier.lamb_weight = lambda_weight[section]
 
-            classifier.power_n = power_n
-            classifier.lamb_weight = lambda_weight[section]
+        reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
+        np.delete(reference_output, label, axis=1)
 
-            reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
+        classifier.reference_output = reference_output
+        classifier.train_model(x, y, batch_size, epochs)
 
-            np.delete(reference_output, label, axis=1)
-            for batch in range(4):
-                small_batch_size = len(x)//4
-                small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
-                classifier.reference_output = reference_output[small_data_index, :]
-                classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
+
+        # for epoch in range(epochs):
+        #     shuffle_index = np.arange(len(x))
+        #     random.shuffle(shuffle_index)
+        #     x = x[shuffle_index]
+        #     y = y[shuffle_index]
+        #
+        #     classifier.power_n = power_n
+        #     classifier.lamb_weight = lambda_weight[section]
+        #
+        #     reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
+        #
+        #     np.delete(reference_output, label, axis=1)
+        #     for batch in range(4):
+        #         small_batch_size = len(x)//4
+        #         small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
+        #         classifier.reference_output = reference_output[small_data_index, :]
+        #         classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
 
     accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
-    record.write('top 1 test accuracy before training: ' + str(accuracy_multi) + '\n')
+    record.write('section ' + str(section) + 'top 1 test accuracy: ' + str(accuracy_multi) + '\n')
     record.flush()
     record.close()
     K.clear_session()
