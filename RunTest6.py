@@ -108,7 +108,7 @@ def initialization(file_index, lambda_weight):
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
 
-    dirs = 'test1/'
+    dirs = 'test2/'
     if not os.path.exists(dirs):
         os.makedirs(dirs)
 
@@ -153,7 +153,7 @@ def run_cross_reference(section, file_index, lambda_weight):
     model_object = FactoryClass.ChooseNetworkCreator(model_type, model_architecture, input_size, learning_rate, dropout,
                                                      2)
 
-    dirs = 'test1/'
+    dirs = 'test2/'
     model_dirs = dirs + 'model/' + dataset + '_RunTest6_' + str(file_index) + '/'
     record_file = dirs + dataset + '_RunTest6_' + str(file_index) + '.txt'
     record = open(record_file, 'a+')
@@ -184,32 +184,32 @@ def run_cross_reference(section, file_index, lambda_weight):
         x = np.append(clean_x[index_clean_matrix[label]], x_train[index_train], axis=0)
         y = np.array([1] * data_size + [0] * data_size).reshape(2 * data_size, 1)
 
-        # classifier.power_n = power_n
-        # classifier.lamb_weight = lambda_weight[section]
+        classifier.power_n = power_n
+        classifier.lamb_weight = lambda_weight[section]
+
+        reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
+        np.delete(reference_output, label, axis=1)
+
+        classifier.reference_output = reference_output
+        classifier.train_model(x, y, batch_size, epochs)
+
+        # for epoch in range(epochs):
+        #     shuffle_index = np.arange(len(x))
+        #     random.shuffle(shuffle_index)
+        #     x = x[shuffle_index]
+        #     y = y[shuffle_index]
         #
-        # reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
-        # np.delete(reference_output, label, axis=1)
+        #     classifier.power_n = power_n
+        #     classifier.lamb_weight = lambda_weight[section]
         #
-        # classifier.reference_output = reference_output
-        # classifier.train_model(x, y, batch_size, epochs)
-
-        for epoch in range(epochs):
-            shuffle_index = np.arange(len(x))
-            random.shuffle(shuffle_index)
-            x = x[shuffle_index]
-            y = y[shuffle_index]
-
-            classifier.power_n = power_n
-            classifier.lamb_weight = lambda_weight[section]
-
-            reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
-
-            np.delete(reference_output, label, axis=1)
-            for batch in range(4):
-                small_batch_size = len(x)//4
-                small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
-                classifier.reference_output = reference_output[small_data_index, :]
-                classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
+        #     reference_output = generate_reference_output(x, binary_classifier_list, num_classes)
+        #
+        #     np.delete(reference_output, label, axis=1)
+        #     for batch in range(4):
+        #         small_batch_size = len(x)//4
+        #         small_data_index = range(small_batch_size * batch, small_batch_size * (batch + 1))
+        #         classifier.reference_output = reference_output[small_data_index, :]
+        #         classifier.train_model(x[small_data_index, :], y[small_data_index, :], small_batch_size, 1)
 
     accuracy_multi = evaluate_target_model_top_n(x_test, y_test, binary_classifier_list, 1)
     record.write('section ' + str(section) + ' top 1 test accuracy: ' + str(accuracy_multi) + '\n')
