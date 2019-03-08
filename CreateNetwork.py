@@ -117,9 +117,12 @@ class CreateCNN(CreateNetwork):
         return model
 
     def train_model(self, x, y, batch_size, epochs):
-        adam = Adam(lr=self.learning_rate)
-        self.model.compile(loss=self.cross_ref_loss, metrics=['accuracy'], optimizer=adam)
-        self.model.fit(x, y, batch_size=batch_size, epochs=epochs)
+        if self.num_classes > 2:
+            self.model.fit(x, y, batch_size=batch_size, epochs=epochs)
+        elif self.num_classes == 2:
+            adam = Adam(lr=self.learning_rate)
+            self.model.compile(loss=self.cross_ref_loss, metrics=['accuracy'], optimizer=adam)
+            self.model.fit(x, y, batch_size=batch_size, epochs=epochs)
 
     def evaluate_model(self, x, y):
         adam = Adam(lr=self.learning_rate)

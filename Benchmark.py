@@ -5,17 +5,28 @@
 @time:2018/12/1019:58
 """
 
+
+import math
+import tensorflow as tf
 import numpy as np
 import random
 import FactoryClass
-import math
+from keras import backend as K
+import os
 
-dataset = 'Fruit360'
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
+K.set_session(sess)
+
+dataset = 'CIFAR10'
 model_type = 'CNN'
 seed = 10
 # initialization = 'xavier'
-model_architecture = [[32, 5, 5], [32, 5, 5], [32, 5, 5], [1500]]
-noise_level = 0
+model_architecture = [[32, 5, 5], [32, 5, 5], [32, 5, 5], [1000]]
+noise_level = 0.8
 augmentation = False
 dropout = 0.5
 learning_rate = 0.0002
@@ -44,7 +55,7 @@ def run_benchmark():
     record.write('learning rate: ' + str(learning_rate) + '\n')
     record.write('batch size: ' + str(batch_size) + '\n')
     record.write('epoch: ' + str(epochs) + '\n')
-    record.write('visualize after every ' + str(visualization_batch_num) + 'batch' + '\n')
+    # record.write('visualize after every ' + str(visualization_batch_num) + 'batch' + '\n')
 
     loss_train, accuracy_train = classifier.evaluate_model(x_train, y_train)
     loss_test, accuracy_test = classifier.evaluate_model(x_test, y_test)
@@ -61,25 +72,25 @@ def run_benchmark():
         random.shuffle(shuffle_index)
         x_train = x_train[shuffle_index]
         y_train = y_train[shuffle_index]
-        if epoch < 2:
-            for group in range(num_group):
-                if group == (num_group - 1):
-                    index_subset = np.arange(group * group_size, num_samples)
-                else:
-                    index_subset = np.arange(group * group_size, (group + 1) * group_size)
-                classifier.train_model(x_train[index_subset], y_train[index_subset], batch_size, epochs=1)
-                loss_train, accuracy_train = classifier.evaluate_model(x_train, y_train)
-                loss_test, accuracy_test = classifier.evaluate_model(x_test, y_test)
-                record.write(str(epoch) + '-th epoch, ' + str(group) + '-th group, loss: ' + str(
-                    loss_train) + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
-                record.flush()
-        else:
-            classifier.train_model(x_train, y_train, batch_size, epochs=1)
-            loss_train, accuracy_train = classifier.evaluate_model(x_train, y_train)
-            loss_test, accuracy_test = classifier.evaluate_model(x_test, y_test)
-            record.write(str(epoch) + '-th epoch, loss: ' + str(loss_train) + ', train accuracy: '
-                         + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
-            record.flush()
+        # if epoch < 2:
+        #     for group in range(num_group):
+        #         if group == (num_group - 1):
+        #             index_subset = np.arange(group * group_size, num_samples)
+        #         else:
+        #             index_subset = np.arange(group * group_size, (group + 1) * group_size)
+        #         classifier.train_model(x_train[index_subset], y_train[index_subset], batch_size, epochs=1)
+        #         loss_train, accuracy_train = classifier.evaluate_model(x_train, y_train)
+        #         loss_test, accuracy_test = classifier.evaluate_model(x_test, y_test)
+        #         record.write(str(epoch) + '-th epoch, ' + str(group) + '-th group, loss: ' + str(
+        #             loss_train) + ', train accuracy: ' + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
+        #         record.flush()
+        # else:
+        classifier.train_model(x_train, y_train, batch_size, epochs=1)
+        loss_train, accuracy_train = classifier.evaluate_model(x_train, y_train)
+        loss_test, accuracy_test = classifier.evaluate_model(x_test, y_test)
+        record.write(str(epoch) + '-th epoch, loss: ' + str(loss_train) + ', train accuracy: '
+                     + str(accuracy_train) + ', test accuracy:' + str(accuracy_test) + '\n')
+        record.flush()
     record.write('*' * 30 + '\n')
     record.close()
 
